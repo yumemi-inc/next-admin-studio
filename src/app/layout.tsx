@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" data-mantine-color-scheme="light">
       <body>
         <Providers>{children}</Providers>
       </body>
