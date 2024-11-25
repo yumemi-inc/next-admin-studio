@@ -10,7 +10,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check --write"
+    "lint": "biome check --write",
+    "gen": "scaffdog generate && nr check ./src/model/",
+    "scaffold": "bash .scaffdog/init-content.sh"
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
