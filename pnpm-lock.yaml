@@ -44,6 +44,9 @@ importers:
       react-dom:
         specifier: 19.0.0-rc-66855b96-20241106
         version: 19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106)
+      remeda:
+        specifier: ^2.17.3
+        version: 2.17.3
       ts-pattern:
         specifier: ^5.5.0
         version: 5.5.0
@@ -718,6 +721,9 @@ packages:
 
   regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
+
+  remeda@2.17.3:
+    resolution: {integrity: sha512-xyi2rCQkz2j4BEWbWxPw6JCapv1yBuSwr4Uf9BX00AkesAJaiKvc6Il6thsBidwVZAtNiSaCIXvslkKL0ybz8w==}
 
   scheduler@0.25.0-rc-66855b96-20241106:
     resolution: {integrity: sha512-HQXp/Mnp/MMRSXMQF7urNFla+gmtXW/Gr1KliuR0iboTit4KvZRY8KYaq5ccCTAOJiUqQh2rE2F3wgUekmgdlA==}
@@ -1396,6 +1402,10 @@ snapshots:
   react@19.0.0-rc-66855b96-20241106: {}
 
   regenerator-runtime@0.14.1: {}
+
+  remeda@2.17.3:
+    dependencies:
+      type-fest: 4.28.0
 
   scheduler@0.25.0-rc-66855b96-20241106: {}
 
