@@ -10,9 +10,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome check --write"
   },
   "dependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@mantine/core": "^7.14.2",
     "@mantine/dates": "^7.14.2",
     "@mantine/hooks": "^7.14.2",
