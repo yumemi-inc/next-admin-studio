@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+
+import { Providers } from "./providers";
+
 export const metadata: Metadata = {
   title: "Next Admin Studio",
-  description: "Next Admin Studio",
+  description:
+    "Admin app made with Next.js, Mantine UI, and scaffdog templates.",
 };
 
 export default function RootLayout({
@@ -11,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
