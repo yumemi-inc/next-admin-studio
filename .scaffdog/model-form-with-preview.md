@@ -207,7 +207,7 @@ export const CancelTemporaryClose{{ inputs.model | pascal }}Button: FC = () => {
 import { Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 
-import { loadingToast } from "@/common/components/form/toast";
+import { loadingToast } from "@/common/components/toast";
 
 import { use{{ inputs.model | pascal }}FormOperationState } from "../../../../store/hook";
 
@@ -306,7 +306,7 @@ export const ConfirmDraft{{ inputs.model | pascal }}FormButton: FC = () => {
 ```tsx
 import { useCallback } from "react";
 
-import { errorToast, loadingToast } from "@/common/components/form/toast";
+import { errorToast, loadingToast } from "@/common/components/toast";
 
 import {
   use{{ inputs.model | pascal }}FormOperationState,
@@ -401,7 +401,7 @@ export const CreateConfirmed{{ inputs.model | pascal }}FormButton: FC = () => {
 ```tsx
 import { useCallback } from "react";
 
-import { errorToast, loadingToast } from "@/common/components/form/toast";
+import { errorToast, loadingToast } from "@/common/components/toast";
 
 import {
   use{{ inputs.model | pascal }}FormOperationState,
@@ -497,7 +497,7 @@ export const CreateDraft{{ inputs.model | pascal }}FormButton: FC = () => {
 ```tsx
 import { useCallback } from "react";
 
-import { errorToast, loadingToast } from "@/common/components/form/toast";
+import { errorToast, loadingToast } from "@/common/components/toast";
 
 import {
   use{{ inputs.model | pascal }}FormOperationState,
@@ -602,7 +602,7 @@ export const EditConfirmed{{ inputs.model | pascal }}FormButton: FC = () => {
 ```tsx
 import { useCallback } from "react";
 
-import { errorToast, loadingToast } from "@/common/components/form/toast";
+import { errorToast, loadingToast } from "@/common/components/toast";
 
 import {
   use{{ inputs.model | pascal }}FormOperationState,
@@ -698,7 +698,7 @@ export const EditDraft{{ inputs.model | pascal }}FormButton: FC = () => {
 ```tsx
 import { useCallback } from "react";
 
-import { errorToast, loadingToast } from "@/common/components/form/toast";
+import { errorToast, loadingToast } from "@/common/components/toast";
 
 import {
   use{{ inputs.model | pascal }}FormOperationState,
@@ -799,7 +799,7 @@ export const TemporarilyClose{{ inputs.model | pascal }}FormButton: FC = () => {
 import { Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 
-import { loadingToast } from "@/common/components/form/toast";
+import { loadingToast } from "@/common/components/toast";
 
 import { use{{ inputs.model | pascal }}FormOperationState } from "../../../../store/hook";
 
