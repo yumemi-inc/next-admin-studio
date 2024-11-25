@@ -23,8 +23,8 @@ pnpm exec scaffdog generate model-form-with-preview --answer "model:$model" --an
 pnpm exec scaffdog generate model-page --answer "model:$model" --answer "path:$path" --answer "label:$label" --output "/app/"
 
 # コードフォーマット
-nr check -- "./src/model/$model"
-nr check -- "./src/app/(general)/$path"
+nr lint -- "./src/model/$model"
+nr lint -- "./src/app/(general)/$path"
 
 # コード生成の完了メッセージを表示
 echo "✨ Code generation completed for model: $model, path: $path, label: $label"
