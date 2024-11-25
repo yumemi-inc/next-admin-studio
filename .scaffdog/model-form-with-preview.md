@@ -50,7 +50,7 @@ export const {{ inputs.model | pascal }}FormWithPreviewBreadcrumbs = () => {
 # `form-with-preview/form/inputs/admin-label/const.ts`
 
 ```ts
-export const {{ inputs.model | snale | upper }}_ADMIN_LABEL_DEFAULT_VALUE = "";
+export const {{ inputs.model | snake | upper }}_ADMIN_LABEL_DEFAULT_VALUE = "";
 ```
 
 # `form-with-preview/form/inputs/admin-label/hook.ts`
@@ -1213,10 +1213,10 @@ export const get{{ inputs.model | pascal }} = (id: string): {{ inputs.model | pa
 
 ```ts
 import type { {{ inputs.model | pascal }}Form } from "../form/type";
-import { {{ inputs.model | snale | upper }}_ADMIN_LABEL_DEFAULT_VALUE } from "../form/inputs/admin-label/const"
+import { {{ inputs.model | snake | upper }}_ADMIN_LABEL_DEFAULT_VALUE } from "../form/inputs/admin-label/const"
 
 export const {{ inputs.model | snake | upper }}_FORM_STORE_INITIAL_STATE: {{ inputs.model | pascal }}Form = {
-  adminLabel: {{ inputs.model | snale | upper }}_ADMIN_LABEL_DEFAULT_VALUE,
+  adminLabel: {{ inputs.model | snake | upper }}_ADMIN_LABEL_DEFAULT_VALUE,
 };
 
 ```
