@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@internationalized/date": "^3.6.0",
     "@mantine/core": "^7.14.2",
     "@mantine/dates": "^7.14.2",
     "@mantine/hooks": "^7.14.2",
@@ -28,8 +27,6 @@
     "next": "15.0.3",
     "nuqs": "^2.2.3",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-aria": "^3.36.0",
-    "react-aria-components": "^1.5.0",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "remeda": "^2.17.3",
     "ts-pattern": "^5.5.0",
