@@ -15,8 +15,10 @@ questions:
 ```ts
 {{ model := output.path | extractModel }}
 {{ name := model + '-' + inputs.property }}
-export const {{ name | snake | upper }}_URL_DEFAULT_VALUE: string = "";
-export const {{ name | snake | upper }}_FILE_DEFAULT_VALUE: File | null = null;
+export const {{ name | snake | upper }}_DEFAULT_VALUE = {
+  url: "",
+  file: null,
+};
 ```
 
 # `form/inputs/{{ inputs.property }}/hook.ts`
@@ -26,18 +28,16 @@ export const {{ name | snake | upper }}_FILE_DEFAULT_VALUE: File | null = null;
 {{ name := model + '-' + inputs.property }}
 
 import { useCallback } from "react";
+
+import { uploadFile } from "@/common/lib/upload-file";
+
 import { use{{ model | pascal }}FormStore } from "../../../store/hook";
-import {
-  {{ name | snake | upper }}_FILE_DEFAULT_VALUE,
-  {{ name | snake | upper }}_URL_DEFAULT_VALUE,
-} from "./const";
+import { {{ name | snake | upper }}_DEFAULT_VALUE } from "./const";
 
 
 export const use{{ model | pascal }}{{ inputs.property | pascal }}Input = () => {
-  const file = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }}File);
-  const setFile = use{{ model | pascal }}FormStore((state) => state.set{{ inputs.property | pascal }}File);
-  const url = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }}Url);
-  const setUrl = use{{ model | pascal }}FormStore((state) => state.set{{ inputs.property | pascal }}Url);
+  const image = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }});
+  const setImage = use{{ model | pascal }}FormStore((state) => state.set{{ inputs.property | pascal }});
 
   const validationPhase = use{{ model | pascal }}FormStore(
     (state) => state.validationPhase,
@@ -46,24 +46,22 @@ export const use{{ model | pascal }}{{ inputs.property | pascal }}Input = () => 
     (state) => state.get{{ inputs.property | pascal }}ErrorMessages,
   );
 
-  const errorMessages = getErrorMessages(url, validationPhase);
+  const errorMessages = getErrorMessages(image.url, validationPhase);
 
   const onUpload = useCallback(async (file: File | null) => {
     if (!file) {
       // 初期化処理
-      setUrl({{ name | snake | upper }}_URL_DEFAULT_VALUE);
-      setFile({{ name | snake | upper }}_FILE_DEFAULT_VALUE);
+      setImage({{ name | snake | upper }}_DEFAULT_VALUE);
       return;
     };
 
     // ファイルのアップロード処理
-    const uploadedUrl = "uploaded url";
+    const uploadedUrl = await uploadFile(file);
 
-    setUrl(uploadedUrl);
-    setFile(file);
-  }, [setFile, setUrl]);
+    setImage({ file, url: uploadedUrl });
+  }, [setImage]);
 
-  return { file, onUpload, errorMessages };
+  return { file: image.file, onUpload, errorMessages };
 };
 
 ```
@@ -109,6 +107,7 @@ import {
   getValidationtErrorMessage,
 } from "@/model/common/lib/get-validation-error-message";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
+import type { FileInputValue } from "@/model/common/lib/file-upload-converter/type";
 
 import {
   validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange,
@@ -116,10 +115,8 @@ import {
 } from "./validation";
 
 export type {{ model | pascal }}{{ inputs.property | pascal }}Slice = {
-  {{ inputs.property | camel }}Url: string;
-  {{ inputs.property | camel }}File: File | null;
-  set{{ inputs.property | pascal }}Url: ({{ inputs.property | camel }}Url: string) => void;
-  set{{ inputs.property | pascal }}File: ({{ inputs.property | camel }}File: File | null) => void;
+  {{ inputs.property | camel }}: FileInputValue;
+  set{{ inputs.property | pascal }}: ({{ inputs.property | camel }}: FileInputValue) => void;
   get{{ inputs.property | pascal }}ErrorMessages: (
     value: string,
     phase: ValidationPhase,
@@ -129,12 +126,12 @@ export type {{ model | pascal }}{{ inputs.property | pascal }}Slice = {
 
 export const create{{ model | pascal }}{{ inputs.property | pascal }}Slice: FormInputSliceCreater<
   {{ model | pascal }}{{ inputs.property | pascal }}Slice,
-  { {{ inputs.property | camel }}Url: string; {{ inputs.property | camel }}File: File | null }
+  {
+    {{ inputs.property | camel }}: FileInputValue
+  }
 > = (initalValue) => (set, get) => ({
-  {{ inputs.property | camel }}Url: initalValue.{{ inputs.property | camel }}Url,
-  {{ inputs.property | camel }}File: initalValue.{{ inputs.property | camel }}File,
-  set{{ inputs.property | pascal }}Url: ({{ inputs.property | camel }}Url) => set({ {{ inputs.property | camel }}Url }),
-  set{{ inputs.property | pascal }}File: ({{ inputs.property | camel }}File) => set({ {{ inputs.property | camel }}File }),
+  {{ inputs.property | camel }}: initalValue.{{ inputs.property | camel }},
+  set{{ inputs.property | pascal }}: ({{ inputs.property | camel }}) => set({ {{ inputs.property | camel }} }),
   get{{ inputs.property | pascal }}ErrorMessages: (value, phase) => {
     return getValidationtErrorMessage({
       phase,
@@ -145,7 +142,7 @@ export const create{{ model | pascal }}{{ inputs.property | pascal }}Slice: Form
     });
   },
   get{{ inputs.property | pascal }}IsValid: () => {
-    const value = get().{{ inputs.property | camel }}Url;
+    const value = get().{{ inputs.property | camel }}.url;
     const phase = get().validationPhase;
     const errorMessages = get().get{{ inputs.property | pascal }}ErrorMessages(value, phase);
     return errorMessages.length === 0;
@@ -190,8 +187,7 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Input } from "./input
 
 ```ts
 {{ read output.abs | before "};" }}
-  {{ inputs.property | camel }}Url: string;
-  {{ inputs.property | camel }}File: File | null;
+  {{ inputs.property | camel }}: FileInputValue;
 {{ read output.abs | after "};" -1 }}
 
 ```
@@ -203,11 +199,10 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Input } from "./input
 ```ts
 {{ model := output.path | extractModel }}
 {{ name := model + '-' + inputs.property }}
-import { {{ name | snake | upper }}_URL_DEFAULT_VALUE, {{ name | snake | upper }}_FILE_DEFAULT_VALUE } from "../form/inputs/{{ inputs.property}}/const"
+import { {{ name | snake | upper }}_DEFAULT_VALUE } from "../form/inputs/{{ inputs.property}}/const"
 
 {{ read output.abs | before "};" }}
-  {{ inputs.property | camel }}Url: {{ name | snake | upper }}_URL_DEFAULT_VALUE,
-  {{ inputs.property | camel }}File: {{ name | snake | upper }}_FILE_DEFAULT_VALUE,
+  {{ inputs.property | camel }}: {{ name | snake | upper }}_DEFAULT_VALUE,
 {{ read output.abs | after "};" -1 }}
 
 ```
@@ -250,7 +245,7 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}PreviewView } from ".
 import { use{{ model | pascal }}FormStore } from "../../store/hook";
 
 export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewContainer = () => {
-  const {{ inputs.property | camel }} = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }});
+  const {{ inputs.property | camel }} = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }}.file);
   return <{{ model | pascal }}{{ inputs.property | pascal }}PreviewView value={ {{ inputs.property | camel }}} />;
 };
 
