@@ -1,14 +1,11 @@
-import {
-  type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+import type { ValidationPhase } from "@/model/common/lib/get-validation-error-message";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 import {
-  type ArtworkAuctionStartPriceInputSlice,
-  type ArtworkAuctionStartPriceSetterSlice,
-  type ArtworkAuctionStartPriceSlice,
-  createArtworkAuctionStartPriceSlice,
+  type ArtworkAuctionStartingPriceInputSlice,
+  type ArtworkAuctionStartingPriceSetterSlice,
+  type ArtworkAuctionStartingPriceSlice,
+  createArtworkAuctionStartingPriceSlice,
 } from "./input/auction/slice";
 import {
   type ArtworkFixedPriceInputSlice,
@@ -17,30 +14,27 @@ import {
   createArtworkFixedPriceSlice,
 } from "./input/fixed-price/slice";
 import type { ArtworkSalesStyle } from "./type";
-import {
-  validateArtworkSalesStyleOnChange,
-  validateArtworkSalesStyleOnSubmit,
-} from "./validation";
+import {} from "./validation";
 
 export type ArtworkSalesStyleInputSlice = {
   // 販売方式
   salesStyle: ArtworkSalesStyle;
 } & ArtworkFixedPriceInputSlice &
-  ArtworkAuctionStartPriceInputSlice;
+  ArtworkAuctionStartingPriceInputSlice;
 
 export type ArtworkSalesStyleSetterSlice = {
   // 販売方式のsetter
   setSalesStyle: (salesStyle: ArtworkSalesStyle) => void;
 } & ArtworkFixedPriceSetterSlice &
-  ArtworkAuctionStartPriceSetterSlice;
+  ArtworkAuctionStartingPriceSetterSlice;
 export type ArtworkSalesStyleSlice = ArtworkSalesStyleInputSlice &
   ArtworkSalesStyleSetterSlice & {
     getSalesStyleErrorMessages: (
-      value: string,
+      value: ArtworkSalesStyle,
       phase: ValidationPhase,
     ) => string[];
     getSalesStyleIsValid: () => boolean;
-  } & ArtworkAuctionStartPriceSlice &
+  } & ArtworkAuctionStartingPriceSlice &
   ArtworkFixedPriceSlice;
 
 export const createArtworkSalesStyleSlice: FormInputSliceCreater<
@@ -65,5 +59,5 @@ export const createArtworkSalesStyleSlice: FormInputSliceCreater<
   },
 
   ...createArtworkFixedPriceSlice(initalValue)(set, get, store),
-  ...createArtworkAuctionStartPriceSlice(initalValue)(set, get, store),
+  ...createArtworkAuctionStartingPriceSlice(initalValue)(set, get, store),
 });
