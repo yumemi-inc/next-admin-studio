@@ -1,7 +1,6 @@
 import { useArtworkFormStore } from "@/model/artwork/components/form-with-preview/store/hook";
 
 export const useArtworkFixedPriceInput = () => {
-  // 固定価格の場合の価格
   const fixedPrice = useArtworkFormStore((state) => state.fixedPrice);
   const setFixedPrice = useArtworkFormStore((state) => state.setFixedPrice);
 

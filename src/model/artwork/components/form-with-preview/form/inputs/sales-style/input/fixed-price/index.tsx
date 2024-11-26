@@ -15,7 +15,6 @@ export const ArtworkFixedPriceInput: FC = () => {
       description="価格を入力してください"
       value={value}
       onChange={setValue}
-      disabled={false}
       errorMessages={errorMessages}
     />
   );

@@ -10,12 +10,10 @@ import {
 } from "./validation";
 
 export type ArtworkFixedPriceInputSlice = {
-  // 固定価格
   fixedPrice: number;
 };
 
 export type ArtworkFixedPriceSetterSlice = {
-  // 固定価格のsetter
   setFixedPrice: (fixedPrice: number) => void;
 };
 
