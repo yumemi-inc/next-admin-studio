@@ -16,7 +16,6 @@ export const ArtworkAdminLabelInput: FC = () => {
       placeholder="管理名称"
       value={value}
       setValue={setValue}
-      disabled={false}
       errorMessages={errorMessages}
     />
   );

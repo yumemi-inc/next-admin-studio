@@ -65,7 +65,7 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}Input: FC = () =>
       options={[]}
       value={value}
       onChange={setValue}
-      disabled={false}
+       
       errorMessages={errorMessages}
     />
   );

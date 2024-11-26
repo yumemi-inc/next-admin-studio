@@ -16,7 +16,6 @@ export const ArtistAdminLabelInput: FC = () => {
       placeholder="管理名称"
       value={value}
       setValue={setValue}
-      disabled={false}
       errorMessages={errorMessages}
     />
   );
