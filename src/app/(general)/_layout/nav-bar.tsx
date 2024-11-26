@@ -1,4 +1,5 @@
 import { artistPathMapping } from "@/model/artist/path";
+import { artworkPathMapping } from "@/model/artwork/path";
 import { MODELS } from "@/model/common/const";
 import {
   Box,
@@ -34,6 +35,10 @@ const NAV_GROUPS: NavGroup[] = [
       {
         label: MODELS.Artist.label,
         path: artistPathMapping.indexPath,
+      },
+      {
+        label: MODELS.Artwork.label,
+        path: artworkPathMapping.indexPath,
       },
     ],
   },
@@ -116,3 +121,9 @@ const NavLink: FC<NavLinkProps & { href: string; hasBorder?: boolean }> = ({
     />
   );
 };
+
+// TODO: NAV_GROUPに下記のページリンクを追加
+// {
+//   label: MODELS.Artwork.label,
+//   path: artworkPathMapping.indexPath,
+// },

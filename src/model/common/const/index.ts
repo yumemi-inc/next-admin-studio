@@ -5,4 +5,7 @@ export const MODELS = {
   Artist: {
     label: "アーティスト",
   },
+  Artwork: {
+    label: "作品",
+  },
 } as const;
