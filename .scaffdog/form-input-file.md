@@ -186,6 +186,10 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Input } from "./input
 <!-- formの型を更新 -->
 
 ```ts
+
+import type { FileInputValue } from "@/model/common/lib/file-upload-converter/type";
+
+
 {{ read output.abs | before "};" }}
   {{ inputs.property | camel }}: FileInputValue;
 {{ read output.abs | after "};" -1 }}
@@ -261,5 +265,20 @@ import { Text } from "@mantine/core";
 export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewView = ({ value }: { value: File | null }) => {
   return <Text>{value?.name}</Text>;
 };
+
+```
+
+# `lib/server-to-form.ts`
+<!-- serverのstateをformに変換する関数を更新 -->
+
+```ts
+{{ model := output.path | extractModel }}
+
+import { fileUploadConverter } from "@/model/common/lib/file-upload-converter";
+
+
+{{ read output.abs | before "};" }}
+      {{ inputs.property | camel }}: fileUploadConverter.toClient(serverState.{{ inputs.property }}),
+{{ read output.abs | after "};" -1 }}
 
 ```
