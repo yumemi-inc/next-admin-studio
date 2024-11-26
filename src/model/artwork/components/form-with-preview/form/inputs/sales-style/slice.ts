@@ -50,13 +50,12 @@ export const createArtworkSalesStyleSlice: FormInputSliceCreater<
   salesStyle: initalValue.salesStyle,
   setSalesStyle: (salesStyle) => set({ salesStyle }),
   getSalesStyleErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
-      phase,
-      validations: {
-        onChange: validateArtworkSalesStyleOnChange(value),
-        onConfirmedSubmit: validateArtworkSalesStyleOnSubmit(value),
-      },
-    });
+    return value === "AUCTION"
+      ? get().getAuctionStartingPriceErrorMessages(
+          get().auctionStartingPrice,
+          phase,
+        )
+      : get().getFixedPriceErrorMessages(get().fixedPrice, phase);
   },
   getSalesStyleIsValid: () => {
     const value = get().salesStyle;
