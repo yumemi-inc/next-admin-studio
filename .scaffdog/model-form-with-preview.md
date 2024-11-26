@@ -118,7 +118,7 @@ import {
   validate{{ inputs.model | pascal }}AdminLabelOnSubmit,
 } from "./validation";
 
-export type AdminLabelSlice = {
+export type {{ inputs.model | pascal }}AdminLabelSlice = {
   adminLabel: string;
   setAdminLabel: (adminLabel: string) => void;
   getAdminLabelErrorMessages: (
@@ -129,7 +129,7 @@ export type AdminLabelSlice = {
 };
 
 export const createAdminLabelSlice: FormInputSliceCreater<
-  AdminLabelSlice,
+  {{ inputs.model | pascal }}AdminLabelSlice,
   { adminLabel: string }
 > = (initalValue) => (set, get) => ({
   adminLabel: initalValue.adminLabel,
@@ -1335,10 +1335,10 @@ export const {{ inputs.model | pascal }}FormStoreProvider: FC<{
 ```ts
 import type { CommonFormSlice } from "@/model/common/store/form";
 
-import type { AdminLabelSlice } from "../form/inputs/admin-label/slice";
+import type { {{ inputs.model | pascal }}AdminLabelSlice } from "../form/inputs/admin-label/slice";
 import type { {{ inputs.model | pascal }}Form } from "../form/type";
 
-export type {{ inputs.model | pascal }}FormStore = AdminLabelSlice &
+export type {{ inputs.model | pascal }}FormStore = {{ inputs.model | pascal }}AdminLabelSlice &
 
 CommonFormSlice<{{ inputs.model | pascal }}Form>;
 
