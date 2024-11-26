@@ -55,21 +55,14 @@ export const NavBar = () => {
               pl="md"
               bg="gray.0"
               py="xs"
-              style={{
-                borderLeft: "1px solid var(--mantine-color-gray-3)",
-              }}
+              className="border-gray-3 border-l"
             >
               <nav.icon size="1rem" stroke={1.5} color="gray" />
               <Text c="gray" fz="sm" fw="bold">
                 {nav.label}
               </Text>
             </Flex>
-            <Space
-              h={8}
-              style={{
-                borderLeft: "1px solid var(--mantine-color-gray-3)",
-              }}
-            />
+            <Space h={8} className="border-gray-3 border-l" />
             {nav.links.map((link) => (
               <NavLink
                 key={link.path}
@@ -102,13 +95,16 @@ const NavLink: FC<NavLinkProps & { href: string; hasBorder?: boolean }> = ({
     <NavLinkPrimitive
       active={isActive}
       component={Link}
-      style={{
-        borderLeft: hasBorder ? "1px solid" : "none",
-        borderColor: isActive
-          ? "var(--mantine-color-primary)"
-          : "var(--mantine-color-gray-3)",
-        fontWeight: isActive ? "bold" : "normal",
-      }}
+      style={
+        // アクティブ時強調
+        {
+          borderColor: isActive
+            ? "var(--mantine-color-primary)"
+            : "var(--mantine-color-gray-3)",
+          fontWeight: isActive ? "bold" : "normal",
+          borderLeft: hasBorder ? "1px solid" : "none",
+        }
+      }
       {...props}
     />
   );
