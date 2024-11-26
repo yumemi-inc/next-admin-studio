@@ -1,25 +1,17 @@
-import { createArtworkConditionSlice } from "../form/inputs/condition/slice";
-
-import { createArtworkSalesStyleSlice } from "../form/inputs/sales-style/slice";
-
-import { createArtworkSalesPeriodSlice } from "../form/inputs/sales-period/slice";
-
-import { createArtworkOpenAtSlice } from "../form/inputs/open-at/slice";
-
-import { createArtworkImageSlice } from "../form/inputs/image/slice";
-
-import { createArtworkArtistSlice } from "../form/inputs/artist/slice";
-
-import { createArtworkDescriptionSlice } from "../form/inputs/description/slice";
-
-import { createArtworkTitleSlice } from "../form/inputs/title/slice";
-
 import { create } from "zustand";
 
 import { createOperationSlice } from "@/model/common/feature/operation/slice";
 import { createValidationSlice } from "@/model/common/store/form";
 
 import { createAdminLabelSlice } from "../form/inputs/admin-label/slice";
+import { createArtworkArtistSlice } from "../form/inputs/artist/slice";
+import { createArtworkConditionSlice } from "../form/inputs/condition/slice";
+import { createArtworkDescriptionSlice } from "../form/inputs/description/slice";
+import { createArtworkImageSlice } from "../form/inputs/image/slice";
+import { createArtworkOpenAtSlice } from "../form/inputs/open-at/slice";
+import { createArtworkSalesPeriodSlice } from "../form/inputs/sales-period/slice";
+import { createArtworkSalesStyleSlice } from "../form/inputs/sales-style/slice";
+import { createArtworkTitleSlice } from "../form/inputs/title/slice";
 import type { ArtworkForm } from "../form/type";
 import type { ArtworkFormStore } from "./type";
 
@@ -54,19 +46,3 @@ export const createArtworkFormStore = (initialState: ArtworkForm) =>
       },
     };
   });
-
-// TODO: getFormIsValid に get().getTitleIsValid() を追加
-
-// TODO: getFormIsValid に get().getDescriptionIsValid() を追加
-
-// TODO: getFormIsValid に get().getArtistIsValid() を追加
-
-// TODO: getFormIsValid に get().getImageIsValid() を追加
-
-// TODO: getFormIsValid に get().getOpenAtIsValid() を追加
-
-// TODO: getFormIsValid に get().getSalesPeriodIsValid() を追加
-
-// TODO: getFormIsValid に get().getSalesStyleIsValid() を追加
-
-// TODO: getFormIsValid に get().getConditionIsValid() を追加
