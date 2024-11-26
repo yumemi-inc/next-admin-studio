@@ -1,0 +1,1 @@
+export const ARTWORK_FIXED_PRICE_DEFAULT_VALUE = 0;

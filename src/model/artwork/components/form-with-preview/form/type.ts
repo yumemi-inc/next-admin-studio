@@ -1,4 +1,5 @@
 import type { NullableDateRange } from "@/common/components/form/date-time-range-input/type";
+import type { ArtworkSalesStyleInputSlice } from "./inputs/sales-style/slice";
 
 export type ArtworkForm = {
   adminLabel: string;
@@ -9,6 +10,5 @@ export type ArtworkForm = {
   imageFile: File | null;
   openAt: Date | null;
   salesPeriod: NullableDateRange;
-  salesStyle: string;
   condition: string[];
-};
+} & ArtworkSalesStyleInputSlice;

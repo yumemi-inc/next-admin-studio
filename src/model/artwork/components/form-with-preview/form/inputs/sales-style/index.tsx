@@ -4,25 +4,31 @@ import type { FC } from "react";
 
 import { RadioButtonGroup } from "@/common/components/form/radio-input";
 
+import { Stack } from "@mantine/core";
+import { match } from "ts-pattern";
+import { ARTWORK_SALES_STYLE_OPTIONS } from "./const";
 import { useArtworkSalesStyleInput } from "./hook";
-
-const options = [
-  { label: "オークション", value: "1" },
-  { label: "定価販売", value: "2" },
-];
+import { ArtworkAuctionStartPriceInput } from "./input/auction";
+import { ArtworkFixedPriceInput } from "./input/fixed-price";
 
 export const ArtworkSalesStyleInput: FC = () => {
   const { value, setValue, errorMessages } = useArtworkSalesStyleInput();
 
   return (
-    <RadioButtonGroup
-      label="販売方式"
-      description="販売方式を選択してください"
-      options={options}
-      value={value}
-      onChange={setValue}
-      disabled={false}
-      errorMessages={errorMessages}
-    />
+    <Stack>
+      <RadioButtonGroup
+        label="販売方式"
+        description="販売方式を選択してください"
+        options={ARTWORK_SALES_STYLE_OPTIONS}
+        value={value}
+        onChange={setValue}
+        disabled={false}
+        errorMessages={errorMessages}
+      />
+      {match(value)
+        .with("auction", () => <ArtworkAuctionStartPriceInput />)
+        .with("fixed_price", () => <ArtworkFixedPriceInput />)
+        .otherwise(() => null)}
+    </Stack>
   );
 };
