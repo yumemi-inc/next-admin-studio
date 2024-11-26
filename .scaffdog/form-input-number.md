@@ -210,7 +210,7 @@ import { create{{ model | pascal }}{{ inputs.property | pascal }}Slice } from ".
 ```ts
 {{ model := output.path | extractModel }}
 
-import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form/inputs/name/slice";
+import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form/inputs/{{ inputs.property }}/slice";
 
 {{ read output.abs }}
 // TODO: 次を追加 {{ model | pascal }}{{ inputs.property | pascal }}Slice &
@@ -222,12 +222,12 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form
 ```tsx
 {{ model := output.path | extractModel }}
 
-import { {{ model | pascal }}{{ inputs.property | pascal }}PreviewView } from "../../../preview/name";
+import { {{ model | pascal }}{{ inputs.property | pascal }}PreviewView } from "../../../preview/{{ inputs.property }}";
 import { use{{ model | pascal }}FormStore } from "../../store/hook";
 
 export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewContainer = () => {
-  const name = use{{ model | pascal }}FormStore((state) => state.name);
-  return <{{ model | pascal }}{{ inputs.property | pascal }}PreviewView value={name} />;
+  const {{ inputs.property | camel }} = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }});
+  return <{{ model | pascal }}{{ inputs.property | pascal }}PreviewView value={ {{ inputs.property | camel }}} />;
 };
 
 ```
@@ -239,7 +239,7 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewContainer 
 
 import { Text } from "@mantine/core";
 
-export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewView = ({ value }: { value: string }) => {
+export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewView = ({ value }: { value: number }) => {
   return <Text>{value}</Text>;
 };
 
