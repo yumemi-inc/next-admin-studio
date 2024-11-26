@@ -110,11 +110,11 @@ const NavLink: FC<NavLinkProps & { href: string; hasBorder?: boolean }> = ({
       style={
         // アクティブ時強調
         {
+          borderLeft: hasBorder ? "1px solid" : "none",
           borderColor: isActive
             ? "var(--mantine-color-primary)"
             : "var(--mantine-color-gray-3)",
           fontWeight: isActive ? "bold" : "normal",
-          borderLeft: hasBorder ? "1px solid" : "none",
         }
       }
       {...props}
