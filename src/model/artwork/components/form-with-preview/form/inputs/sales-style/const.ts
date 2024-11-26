@@ -1,15 +1,15 @@
 import type { ArtworkSalesStyle } from "./type";
 
-export const ARTWORK_SALES_STYLE_DEFAULT_VALUE: string = "";
+export const ARTWORK_SALES_STYLE_DEFAULT_VALUE: ArtworkSalesStyle = "AUCTION";
 
 export const ARTWORK_SALES_STYLE = {
-  auction: {
+  AUCTION: {
     label: "オークション",
-    value: "auction",
+    value: "AUCTION",
   },
-  fixed_price: {
+  FIXED_PRICE: {
     label: "定価販売",
-    value: "fixed_price",
+    value: "FIXED_PRICE",
   },
 } satisfies Record<
   ArtworkSalesStyle,

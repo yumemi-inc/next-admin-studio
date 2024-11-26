@@ -1,1 +1,1 @@
-export type ArtworkSalesStyle = "auction" | "fixed_price";
+export type ArtworkSalesStyle = "AUCTION" | "FIXED_PRICE";

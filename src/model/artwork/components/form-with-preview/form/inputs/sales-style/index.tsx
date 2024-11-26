@@ -1,11 +1,12 @@
 "use client";
 
+import { Stack } from "@mantine/core";
 import type { FC } from "react";
+import { match } from "ts-pattern";
 
+import { Indent } from "@/common/components/form/indent";
 import { RadioButtonGroup } from "@/common/components/form/radio-input";
 
-import { Stack } from "@mantine/core";
-import { match } from "ts-pattern";
 import { ARTWORK_SALES_STYLE_OPTIONS } from "./const";
 import { useArtworkSalesStyleInput } from "./hook";
 import { ArtworkAuctionStartPriceInput } from "./input/auction";
@@ -25,10 +26,12 @@ export const ArtworkSalesStyleInput: FC = () => {
         disabled={false}
         errorMessages={errorMessages}
       />
-      {match(value)
-        .with("auction", () => <ArtworkAuctionStartPriceInput />)
-        .with("fixed_price", () => <ArtworkFixedPriceInput />)
-        .otherwise(() => null)}
+      <Indent>
+        {match(value)
+          .with("AUCTION", () => <ArtworkAuctionStartPriceInput />)
+          .with("FIXED_PRICE", () => <ArtworkFixedPriceInput />)
+          .exhaustive()}
+      </Indent>
     </Stack>
   );
 };
