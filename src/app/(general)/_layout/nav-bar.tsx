@@ -1,3 +1,5 @@
+import { artistPathMapping } from "@/model/artist/path";
+import { MODELS } from "@/model/common/const";
 import {
   Box,
   Flex,
@@ -28,7 +30,12 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "コンテンツ",
     icon: IconFile,
-    links: [],
+    links: [
+      {
+        label: MODELS.Artist.label,
+        path: artistPathMapping.indexPath,
+      },
+    ],
   },
 ];
 
