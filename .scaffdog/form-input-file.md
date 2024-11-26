@@ -187,12 +187,8 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Input } from "./input
 
 ```ts
 
-import type { FileInputValue } from "@/model/common/lib/file-upload-converter/type";
-
-
-{{ read output.abs | before "};" }}
-  {{ inputs.property | camel }}: FileInputValue;
-{{ read output.abs | after "};" -1 }}
+{{ read output.abs }}
+// TODO: 次を追加 {{ inputs.property | camel }}: FileInputValue;
 
 ```
 
