@@ -137,7 +137,7 @@ export default async function New{{ inputs.model | pascal }}Page(props: Props) {
 {{ read output.abs }}
 // TODO: NAV_GROUPに下記のページリンクを追加
 // {
-//   label: MODELS.{{ inputs model | pascal }}.label,
-//   path: {{ inputs model | camel }}PathMapping.indexPath,
+//   label: MODELS.{{ inputs.model | pascal }}.label,
+//   path: {{ inputs.model | camel }}PathMapping.indexPath,
 // },
 ```

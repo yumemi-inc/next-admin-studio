@@ -1,0 +1,1 @@
+export const ARTWORK_DESCRIPTION_DEFAULT_VALUE = "";

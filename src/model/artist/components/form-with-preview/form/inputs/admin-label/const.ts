@@ -1,0 +1,1 @@
+export const ARTIST_ADMIN_LABEL_DEFAULT_VALUE = "";

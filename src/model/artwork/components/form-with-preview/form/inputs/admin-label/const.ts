@@ -1,0 +1,1 @@
+export const ARTWORK_ADMIN_LABEL_DEFAULT_VALUE = "";

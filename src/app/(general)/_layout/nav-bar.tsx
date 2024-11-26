@@ -1,3 +1,6 @@
+import { artistPathMapping } from "@/model/artist/path";
+import { artworkPathMapping } from "@/model/artwork/path";
+import { MODELS } from "@/model/common/const";
 import {
   Box,
   Flex,
@@ -28,7 +31,16 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "コンテンツ",
     icon: IconFile,
-    links: [],
+    links: [
+      {
+        label: MODELS.Artist.label,
+        path: artistPathMapping.indexPath,
+      },
+      {
+        label: MODELS.Artwork.label,
+        path: artworkPathMapping.indexPath,
+      },
+    ],
   },
 ];
 
@@ -98,14 +110,20 @@ const NavLink: FC<NavLinkProps & { href: string; hasBorder?: boolean }> = ({
       style={
         // アクティブ時強調
         {
+          borderLeft: hasBorder ? "1px solid" : "none",
           borderColor: isActive
             ? "var(--mantine-color-primary)"
             : "var(--mantine-color-gray-3)",
           fontWeight: isActive ? "bold" : "normal",
-          borderLeft: hasBorder ? "1px solid" : "none",
         }
       }
       {...props}
     />
   );
 };
+
+// TODO: NAV_GROUPに下記のページリンクを追加
+// {
+//   label: MODELS.Artwork.label,
+//   path: artworkPathMapping.indexPath,
+// },
