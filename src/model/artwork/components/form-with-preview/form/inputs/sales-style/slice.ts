@@ -1,6 +1,10 @@
-import type { ValidationPhase } from "@/model/common/lib/get-validation-error-message";
+import {
+  type ValidationPhase,
+  getValidationtErrorMessage,
+} from "@/model/common/lib/get-validation-error-message";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
+import { match } from "ts-pattern";
 import {
   type ArtworkAuctionStartingPriceInputSlice,
   type ArtworkAuctionStartingPriceSetterSlice,
@@ -14,7 +18,10 @@ import {
   createArtworkFixedPriceSlice,
 } from "./input/fixed-price/slice";
 import type { ArtworkSalesStyle } from "./type";
-import {} from "./validation";
+import {
+  validateArtworkSalesStyleOnChange,
+  validateArtworkSalesStyleOnSubmit,
+} from "./validation";
 
 export type ArtworkSalesStyleInputSlice = {
   // 販売方式
@@ -44,18 +51,28 @@ export const createArtworkSalesStyleSlice: FormInputSliceCreater<
   salesStyle: initalValue.salesStyle,
   setSalesStyle: (salesStyle) => set({ salesStyle }),
   getSalesStyleErrorMessages: (value, phase) => {
-    return value === "AUCTION"
-      ? get().getAuctionStartingPriceErrorMessages(
-          get().auctionStartingPrice,
-          phase,
-        )
-      : get().getFixedPriceErrorMessages(get().fixedPrice, phase);
+    return getValidationtErrorMessage({
+      phase,
+      validations: {
+        onChange: validateArtworkSalesStyleOnChange(value),
+        onConfirmedSubmit: validateArtworkSalesStyleOnSubmit(value),
+      },
+    });
   },
   getSalesStyleIsValid: () => {
-    const value = get().salesStyle;
+    const salesStyle = get().salesStyle;
     const phase = get().validationPhase;
-    const errorMessages = get().getSalesStyleErrorMessages(value, phase);
-    return errorMessages.length === 0;
+    const errorMessagesOnSalesStyle = get().getSalesStyleErrorMessages(
+      salesStyle,
+      phase,
+    );
+
+    if (errorMessagesOnSalesStyle.length !== 0) return false;
+
+    return match(salesStyle)
+      .with("AUCTION", () => get().getAuctionStartingPriceIsValid())
+      .with("FIXED_PRICE", () => get().getFixedPriceIsValid())
+      .exhaustive();
   },
 
   ...createArtworkFixedPriceSlice(initalValue)(set, get, store),
