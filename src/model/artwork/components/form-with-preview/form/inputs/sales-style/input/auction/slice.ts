@@ -5,49 +5,52 @@ import {
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 import {
-  validateArtworkAuctionStartPriceOnChange,
-  validateArtworkAuctionStartPriceOnSubmit,
+  validateArtworkAuctionStartingPriceOnChange,
+  validateArtworkAuctionStartingPriceOnSubmit,
 } from "./validation";
 
-export type ArtworkAuctionStartPriceInputSlice = {
-  // オークションの開始価格
-  auctionStartPrice: number;
+export type ArtworkAuctionStartingPriceInputSlice = {
+  auctionStartingPrice: number;
 };
 
-export type ArtworkAuctionStartPriceSetterSlice = {
-  // オークションの開始価格のsetter
-  setAuctionStartPrice: (auctionStartPrice: number) => void;
+export type ArtworkAuctionStartingPriceSetterSlice = {
+  setAuctionStartingPrice: (auctionStartingPrice: number) => void;
 };
 
-export type ArtworkAuctionStartPriceSlice = ArtworkAuctionStartPriceInputSlice &
-  ArtworkAuctionStartPriceSetterSlice & {
-    getAuctionStartPriceErrorMessages: (
-      value: number | string,
-      phase: ValidationPhase,
-    ) => string[];
-    getAuctionStartPriceIsValid: () => boolean;
-  };
+export type ArtworkAuctionStartingPriceSlice =
+  ArtworkAuctionStartingPriceInputSlice &
+    ArtworkAuctionStartingPriceSetterSlice & {
+      getAuctionStartingPriceErrorMessages: (
+        value: number | string,
+        phase: ValidationPhase,
+      ) => string[];
+      getAuctionStartingPriceIsValid: () => boolean;
+    };
 
-export const createArtworkAuctionStartPriceSlice: FormInputSliceCreater<
-  ArtworkAuctionStartPriceSlice,
-  ArtworkAuctionStartPriceInputSlice
+export const createArtworkAuctionStartingPriceSlice: FormInputSliceCreater<
+  ArtworkAuctionStartingPriceSlice,
+  ArtworkAuctionStartingPriceInputSlice
 > = (initalValue) => (set, get) => ({
-  auctionStartPrice: initalValue.auctionStartPrice,
+  auctionStartingPrice: initalValue.auctionStartingPrice,
 
-  setAuctionStartPrice: (auctionStartPrice) => set({ auctionStartPrice }),
-  getAuctionStartPriceErrorMessages: (value, phase) => {
+  setAuctionStartingPrice: (auctionStartingPrice) =>
+    set({ auctionStartingPrice }),
+  getAuctionStartingPriceErrorMessages: (value, phase) => {
     return getValidationtErrorMessage({
       phase,
       validations: {
-        onChange: validateArtworkAuctionStartPriceOnChange(value),
-        onConfirmedSubmit: validateArtworkAuctionStartPriceOnSubmit(value),
+        onChange: validateArtworkAuctionStartingPriceOnChange(value),
+        onConfirmedSubmit: validateArtworkAuctionStartingPriceOnSubmit(value),
       },
     });
   },
-  getAuctionStartPriceIsValid: () => {
-    const value = get().auctionStartPrice;
+  getAuctionStartingPriceIsValid: () => {
+    const value = get().auctionStartingPrice;
     const phase = get().validationPhase;
-    const errorMessages = get().getAuctionStartPriceErrorMessages(value, phase);
+    const errorMessages = get().getAuctionStartingPriceErrorMessages(
+      value,
+      phase,
+    );
     return errorMessages.length === 0;
   },
 });

@@ -1,30 +1,29 @@
 import { useArtworkFormStore } from "@/model/artwork/components/form-with-preview/store/hook";
 
-export const useArtworkAuctionStartPriceInput = () => {
-  // オークションの場合の開始価格
-  const auctionStartPrice = useArtworkFormStore(
-    (state) => state.auctionStartPrice,
+export const useArtworkAuctionStartingPriceInput = () => {
+  const auctionStartingPrice = useArtworkFormStore(
+    (state) => state.auctionStartingPrice,
   );
-  const setAuctionStartPrice = useArtworkFormStore(
-    (state) => state.setAuctionStartPrice,
+  const setAuctionStartingPrice = useArtworkFormStore(
+    (state) => state.setAuctionStartingPrice,
   );
 
   const validationPhase = useArtworkFormStore((state) => state.validationPhase);
-  const getAuctionStartPriceErrorMessages = useArtworkFormStore(
-    (state) => state.getAuctionStartPriceErrorMessages,
+  const getAuctionStartingPriceErrorMessages = useArtworkFormStore(
+    (state) => state.getAuctionStartingPriceErrorMessages,
   );
 
-  const errorMessages = getAuctionStartPriceErrorMessages(
-    auctionStartPrice,
+  const errorMessages = getAuctionStartingPriceErrorMessages(
+    auctionStartingPrice,
     validationPhase,
   );
 
   const setValueAsNumber = (value: number | string) => {
-    setAuctionStartPrice(Number(value));
+    setAuctionStartingPrice(Number(value));
   };
 
   return {
-    value: auctionStartPrice,
+    value: auctionStartingPrice,
     setValue: setValueAsNumber,
     errorMessages,
   };

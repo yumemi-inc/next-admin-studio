@@ -4,10 +4,11 @@ import type { FC } from "react";
 
 import { NumberInput } from "@/common/components/form/number-input";
 
-import { useArtworkAuctionStartPriceInput } from "./hook";
+import { useArtworkAuctionStartingPriceInput } from "./hook";
 
-export const ArtworkAuctionStartPriceInput: FC = () => {
-  const { value, setValue, errorMessages } = useArtworkAuctionStartPriceInput();
+export const ArtworkAuctionStartingPriceInput: FC = () => {
+  const { value, setValue, errorMessages } =
+    useArtworkAuctionStartingPriceInput();
 
   return (
     <NumberInput
@@ -15,7 +16,6 @@ export const ArtworkAuctionStartPriceInput: FC = () => {
       description="開始価格を入力してください"
       value={value}
       onChange={setValue}
-      disabled={false}
       errorMessages={errorMessages}
     />
   );
