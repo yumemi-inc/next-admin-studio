@@ -10,22 +10,26 @@ import {
 } from "./validation";
 
 export type ArtworkImageSlice = {
-  imageUrl: string;
-  imageFile: File | null;
-  setImageUrl: (imageUrl: string) => void;
-  setImageFile: (imageFile: File | null) => void;
+  image: {
+    file: File | null;
+    url: string;
+  };
+  setImage: (image: { file: File | null; url: string }) => void;
   getImageErrorMessages: (value: string, phase: ValidationPhase) => string[];
   getImageIsValid: () => boolean;
 };
 
 export const createArtworkImageSlice: FormInputSliceCreater<
   ArtworkImageSlice,
-  { imageUrl: string; imageFile: File | null }
+  {
+    image: {
+      file: File | null;
+      url: string;
+    };
+  }
 > = (initalValue) => (set, get) => ({
-  imageUrl: initalValue.imageUrl,
-  imageFile: initalValue.imageFile,
-  setImageUrl: (imageUrl) => set({ imageUrl }),
-  setImageFile: (imageFile) => set({ imageFile }),
+  image: initalValue.image,
+  setImage: (image) => set({ image }),
   getImageErrorMessages: (value, phase) => {
     return getValidationtErrorMessage({
       phase,
@@ -36,7 +40,7 @@ export const createArtworkImageSlice: FormInputSliceCreater<
     });
   },
   getImageIsValid: () => {
-    const value = get().imageUrl;
+    const value = get().image.url;
     const phase = get().validationPhase;
     const errorMessages = get().getImageErrorMessages(value, phase);
     return errorMessages.length === 0;

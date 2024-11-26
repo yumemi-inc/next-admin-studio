@@ -7,8 +7,10 @@ export type ArtworkForm = {
   title: string;
   description: string;
   artist: string | null;
-  imageUrl: string;
-  imageFile: File | null;
+  image: {
+    url: string;
+    file: File | null;
+  };
   openAt: Date | null;
   salesPeriod: NullableDateRange;
   condition: string[];
