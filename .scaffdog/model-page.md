@@ -129,3 +129,15 @@ export default async function New{{ inputs.model | pascal }}Page(props: Props) {
 }
 
 ```
+
+
+# `(general)/_layout/nav-bar.tsx`
+
+```tsx
+{{ read output.abs }}
+// TODO: NAV_GROUPに下記のページリンクを追加
+// {
+//   label: MODELS.{{ inputs model | pascal }}.label,
+//   path: {{ inputs model | camel }}PathMapping.indexPath,
+// },
+```
