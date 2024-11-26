@@ -211,7 +211,7 @@ import { create{{ model | pascal }}{{ inputs.property | pascal }}Slice } from ".
 ```ts
 {{ model := output.path | extractModel }}
 
-import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form/inputs/name/slice";
+import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form/inputs/{{ inputs.property }}/slice";
 
 {{ read output.abs }}
 // TODO: 次を追加 {{ model | pascal }}{{ inputs.property | pascal }}Slice &
@@ -227,8 +227,8 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}PreviewView } from ".
 import { use{{ model | pascal }}FormStore } from "../../store/hook";
 
 export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewContainer = () => {
-  const value = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }});
-  return <{{ model | pascal }}{{ inputs.property | pascal }}PreviewView value={value} />;
+  const {{ inputs.property | camel }} = use{{ model | pascal }}FormStore((state) => state.{{ inputs.property | camel }});
+  return <{{ model | pascal }}{{ inputs.property | pascal }}PreviewView value={ {{ inputs.property | camel }}} />;
 };
 
 ```
