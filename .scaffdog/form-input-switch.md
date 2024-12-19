@@ -81,8 +81,8 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}Input: FC = () =>
 
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 export type {{ model | pascal }}{{ inputs.property | pascal }}Slice = {
@@ -189,4 +189,14 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewView = ({ 
   return <Text>{value ? "YES" : "NO"}</Text>;
 };
 
+```
+
+# `form/inputs/{{ inputs.property }}/validation.ts`
+
+```ts
+{{ model := output.path | extractModel }}
+
+export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange = (_v: boolean) => [];
+
+export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnSubmit = (_v: boolean) => [];
 ```

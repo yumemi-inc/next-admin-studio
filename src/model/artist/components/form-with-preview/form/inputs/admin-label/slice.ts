@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtistAdminLabelOnChange,
-  validateArtistAdminLabelOnSubmit,
-} from "./validation";
+import { artistAdminLabelValidation } from "./validation";
 
 export type ArtistAdminLabelSlice = {
   adminLabel: string;
@@ -26,12 +22,9 @@ export const createAdminLabelSlice: FormInputSliceCreater<
   adminLabel: initalValue.adminLabel,
   setAdminLabel: (adminLabel) => set({ adminLabel }),
   getAdminLabelErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtistAdminLabelOnChange(value),
-        onConfirmedSubmit: validateArtistAdminLabelOnSubmit(value),
-      },
+      validations: artistAdminLabelValidation(value),
     });
   },
   getAdminLabelIsValid: () => {

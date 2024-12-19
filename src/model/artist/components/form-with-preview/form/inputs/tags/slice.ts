@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtistTagsOnChange,
-  validateArtistTagsOnSubmit,
-} from "./validation";
+import { artistTagsValidation } from "./validation";
 
 export type ArtistTagsSlice = {
   tags: string[];
@@ -23,12 +19,9 @@ export const createArtistTagsSlice: FormInputSliceCreater<
   tags: initalValue.tags,
   setTags: (tags) => set({ tags }),
   getTagsErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtistTagsOnChange(value),
-        onConfirmedSubmit: validateArtistTagsOnSubmit(value),
-      },
+      validations: artistTagsValidation(value),
     });
   },
   getTagsIsValid: () => {

@@ -4,12 +4,14 @@ import {
   notEmptyStartDateValidation,
   startDateIsBeforeEndDateValidation,
 } from "@/common/lib/form-validation/date-range-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkSalesPeriodOnSubmit: MultiValidationFn<
-  NullableDateRange
-> = (v) => [notEmptyStartDateValidation()(v), notEmptyEndDateValidation()(v)];
-
-export const validateArtworkSalesPeriodOnChange: MultiValidationFn<
-  NullableDateRange
-> = (v) => [startDateIsBeforeEndDateValidation()(v)];
+export const artworkSalesPeriodValidation = (
+  v: NullableDateRange,
+): InputValidation => ({
+  onConfirmedSubmit: [
+    notEmptyStartDateValidation()(v),
+    notEmptyEndDateValidation()(v),
+  ],
+  onChange: [startDateIsBeforeEndDateValidation()(v)],
+});

@@ -1,5 +1,3 @@
-import type { ContentStatus } from "@/model/common/const/content-status";
-
 import type { NullableDateRange } from "@/common/components/form/date-time-range-input/type";
 
 export type Artwork = {
@@ -12,7 +10,7 @@ export type Artwork = {
   openAt: Date | null;
   salesPeriod: NullableDateRange;
   condition: string[];
-  creationStatus: ContentStatus;
+  creationStatus: "DRAFT" | "CONFIRMED";
   salesStyle:
     | {
         type: "AUCTION";

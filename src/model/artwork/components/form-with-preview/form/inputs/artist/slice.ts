@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkArtistOnChange,
-  validateArtworkArtistOnSubmit,
-} from "./validation";
+import { artworkArtistValidation } from "./validation";
 
 export type ArtworkArtistSlice = {
   artist: string | null;
@@ -26,12 +22,9 @@ export const createArtworkArtistSlice: FormInputSliceCreater<
   artist: initalValue.artist,
   setArtist: (artist) => set({ artist }),
   getArtistErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkArtistOnChange(value),
-        onConfirmedSubmit: validateArtworkArtistOnSubmit(value),
-      },
+      validations: artworkArtistValidation(value),
     });
   },
   getArtistIsValid: () => {

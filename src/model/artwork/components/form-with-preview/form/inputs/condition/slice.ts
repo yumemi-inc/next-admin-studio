@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkConditionOnChange,
-  validateArtworkConditionOnSubmit,
-} from "./validation";
+import { artworkConditionValidation } from "./validation";
 
 export type ArtworkConditionSlice = {
   condition: string[];
@@ -26,12 +22,9 @@ export const createArtworkConditionSlice: FormInputSliceCreater<
   condition: initalValue.condition,
   setCondition: (condition) => set({ condition }),
   getConditionErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkConditionOnChange(value),
-        onConfirmedSubmit: validateArtworkConditionOnSubmit(value),
-      },
+      validations: artworkConditionValidation(value),
     });
   },
   getConditionIsValid: () => {

@@ -1,10 +1,6 @@
 import { notEmptyFileInputValidation } from "@/common/lib/form-validation/file-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkImageOnSubmit: MultiValidationFn<string> = (v) => [
-  notEmptyFileInputValidation(v),
-];
-
-export const validateArtworkImageOnChange: MultiValidationFn<string> = (
-  _v,
-) => [];
+export const artworkImageValidation = (v: string): InputValidation => ({
+  onConfirmedSubmit: [notEmptyFileInputValidation(v)],
+});

@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkDescriptionOnChange,
-  validateArtworkDescriptionOnSubmit,
-} from "./validation";
+import { artworkDescriptionValidation } from "./validation";
 
 export type ArtworkDescriptionSlice = {
   description: string;
@@ -26,12 +22,9 @@ export const createArtworkDescriptionSlice: FormInputSliceCreater<
   description: initalValue.description,
   setDescription: (description) => set({ description }),
   getDescriptionErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkDescriptionOnChange(value),
-        onConfirmedSubmit: validateArtworkDescriptionOnSubmit(value),
-      },
+      validations: artworkDescriptionValidation(value),
     });
   },
   getDescriptionIsValid: () => {

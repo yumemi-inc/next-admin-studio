@@ -1,10 +1,6 @@
 import { notEmptyCheckboxGroupInputValidation } from "@/common/lib/form-validation/checkbox-group-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkConditionOnSubmit: MultiValidationFn<string[]> = (
-  v,
-) => [notEmptyCheckboxGroupInputValidation(v)];
-
-export const validateArtworkConditionOnChange: MultiValidationFn<string[]> = (
-  _v,
-) => [];
+export const artworkConditionValidation = (v: string[]): InputValidation => ({
+  onConfirmedSubmit: [notEmptyCheckboxGroupInputValidation(v)],
+});

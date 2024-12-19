@@ -1,10 +1,6 @@
 import { notEmptyDateValidation } from "@/common/lib/form-validation/date-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkOpenAtOnSubmit: MultiValidationFn<Date | null> = (
-  v,
-) => [notEmptyDateValidation(v)];
-
-export const validateArtworkOpenAtOnChange: MultiValidationFn<Date | null> = (
-  _v,
-) => [];
+export const artworkOpenAtValidation = (v: Date | null): InputValidation => ({
+  onConfirmedSubmit: [notEmptyDateValidation(v)],
+});

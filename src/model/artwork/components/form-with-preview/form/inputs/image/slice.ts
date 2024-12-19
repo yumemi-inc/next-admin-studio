@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkImageOnChange,
-  validateArtworkImageOnSubmit,
-} from "./validation";
+import { artworkImageValidation } from "./validation";
 
 export type ArtworkImageSlice = {
   image: {
@@ -31,12 +27,9 @@ export const createArtworkImageSlice: FormInputSliceCreater<
   image: initalValue.image,
   setImage: (image) => set({ image }),
   getImageErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkImageOnChange(value),
-        onConfirmedSubmit: validateArtworkImageOnSubmit(value),
-      },
+      validations: artworkImageValidation(value),
     });
   },
   getImageIsValid: () => {

@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtistNameOnChange,
-  validateArtistNameOnSubmit,
-} from "./validation";
+import { artistNameValidation } from "./validation";
 
 export type ArtistNameSlice = {
   name: string;
@@ -23,12 +19,9 @@ export const createArtistNameSlice: FormInputSliceCreater<
   name: initalValue.name,
   setName: (name) => set({ name }),
   getNameErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtistNameOnChange(value),
-        onConfirmedSubmit: validateArtistNameOnSubmit(value),
-      },
+      validations: artistNameValidation(value),
     });
   },
   getNameIsValid: () => {

@@ -1,10 +1,6 @@
 import { notEmptyInputValidation } from "@/common/lib/form-validation/radio-button-group-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkSalesStyleOnSubmit: MultiValidationFn<string> = (
-  v,
-) => [notEmptyInputValidation(v)];
-
-export const validateArtworkSalesStyleOnChange: MultiValidationFn<string> = (
-  _v,
-) => [];
+export const artworkSalesStyleValidation = (v: string): InputValidation => ({
+  onConfirmedSubmit: [notEmptyInputValidation(v)],
+});

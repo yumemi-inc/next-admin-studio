@@ -17,7 +17,7 @@ import type { ContentStatus } from "@/model/common/const/content-status";
 export type {{ inputs.model | pascal }} = {
   id: string;
   adminLabel: string;
-  creationStatus: ContentStatus;
+  creationStatus: "DRAFT" | "CONFIRMED";
 };
 
 ```

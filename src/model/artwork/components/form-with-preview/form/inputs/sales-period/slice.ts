@@ -1,15 +1,11 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 import type { NullableDateRange } from "@/common/components/form/date-time-range-input/type";
-
-import {
-  validateArtworkSalesPeriodOnChange,
-  validateArtworkSalesPeriodOnSubmit,
-} from "./validation";
+import { artworkSalesPeriodValidation } from "./validation";
 
 export type ArtworkSalesPeriodSlice = {
   salesPeriod: NullableDateRange;
@@ -28,12 +24,9 @@ export const createArtworkSalesPeriodSlice: FormInputSliceCreater<
   salesPeriod: initalValue.salesPeriod,
   setSalesPeriod: (salesPeriod) => set({ salesPeriod }),
   getSalesPeriodErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkSalesPeriodOnChange(value),
-        onConfirmedSubmit: validateArtworkSalesPeriodOnSubmit(value),
-      },
+      validations: artworkSalesPeriodValidation(value),
     });
   },
   getSalesPeriodIsValid: () => {

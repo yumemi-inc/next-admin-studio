@@ -1,10 +1,8 @@
 import { notEmptyNumberInputValidation } from "@/common/lib/form-validation/number-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkFixedPriceOnSubmit: MultiValidationFn<
-  number | string
-> = (v) => [notEmptyNumberInputValidation(v)];
-
-export const validateArtworkFixedPriceOnChange: MultiValidationFn<
-  number | string
-> = (_v) => [];
+export const artworkSalesStyleFixedPriceValidation = (
+  v: number | string,
+): InputValidation => ({
+  onConfirmedSubmit: [notEmptyNumberInputValidation(v)],
+});

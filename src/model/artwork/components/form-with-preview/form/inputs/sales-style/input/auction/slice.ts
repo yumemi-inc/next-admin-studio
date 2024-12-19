@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkAuctionStartingPriceOnChange,
-  validateArtworkAuctionStartingPriceOnSubmit,
-} from "./validation";
+import { artworkSalesStyleAuctionStartingPriceValidation } from "./validation";
 
 export type ArtworkAuctionStartingPriceInputSlice = {
   auctionStartingPrice: number;
@@ -36,12 +32,9 @@ export const createArtworkAuctionStartingPriceSlice: FormInputSliceCreater<
   setAuctionStartingPrice: (auctionStartingPrice) =>
     set({ auctionStartingPrice }),
   getAuctionStartingPriceErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkAuctionStartingPriceOnChange(value),
-        onConfirmedSubmit: validateArtworkAuctionStartingPriceOnSubmit(value),
-      },
+      validations: artworkSalesStyleAuctionStartingPriceValidation(value),
     });
   },
   getAuctionStartingPriceIsValid: () => {

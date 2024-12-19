@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkTitleOnChange,
-  validateArtworkTitleOnSubmit,
-} from "./validation";
+import { artworkTitleValidation } from "./validation";
 
 export type ArtworkTitleSlice = {
   title: string;
@@ -23,12 +19,9 @@ export const createArtworkTitleSlice: FormInputSliceCreater<
   title: initalValue.title,
   setTitle: (title) => set({ title }),
   getTitleErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkTitleOnChange(value),
-        onConfirmedSubmit: validateArtworkTitleOnSubmit(value),
-      },
+      validations: artworkTitleValidation(value),
     });
   },
   getTitleIsValid: () => {

@@ -2,12 +2,9 @@ import {
   maxLengthValidation,
   notEmptyInputValidation,
 } from "@/common/lib/form-validation/text-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkTitleOnSubmit: MultiValidationFn<string> = (v) => [
-  notEmptyInputValidation(v),
-];
-
-export const validateArtworkTitleOnChange: MultiValidationFn<string> = (v) => [
-  maxLengthValidation(100)(v),
-];
+export const artworkTitleValidation = (v: string): InputValidation => ({
+  onChange: [maxLengthValidation(100)(v)],
+  onConfirmedSubmit: [notEmptyInputValidation(v)],
+});

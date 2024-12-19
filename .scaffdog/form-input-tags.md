@@ -80,13 +80,12 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}Input: FC = () =>
 
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 import {
-  validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange,
-  validate{{ model | pascal }}{{ inputs.property | pascal }}OnSubmit,
+{{ model | camel }}{{ inputs.property | pascal }}Validation,
 } from "./validation";
 
 export type {{ model | pascal }}{{ inputs.property | pascal }}Slice = {
@@ -106,12 +105,9 @@ export const create{{ model | pascal }}{{ inputs.property | pascal }}Slice: Form
   {{ inputs.property | camel }}: initalValue.{{ inputs.property | camel }},
   set{{ inputs.property | pascal }}: ({{ inputs.property | camel }}) => set({ {{ inputs.property | camel }} }),
   get{{ inputs.property | pascal }}ErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange(value),
-        onConfirmedSubmit: validate{{ model | pascal }}{{ inputs.property | pascal }}OnSubmit(value),
-      },
+      validations: {{ model | camel }}{{ inputs.property | pascal }}Validation,
     });
   },
   get{{ inputs.property | pascal }}IsValid: () => {
@@ -128,17 +124,12 @@ export const create{{ model | pascal }}{{ inputs.property | pascal }}Slice: Form
 
 ```ts
 {{ model := output.path | extractModel }}
-
 import { notEmptyTagsInputValidation } from "@/common/lib/form-validation/tags-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnSubmit: MultiValidationFn<
-  string[]
-> = (v) => [notEmptyTagsInputValidation(v)];
-
-export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange: MultiValidationFn<
-  string[]
-> = (_v) => [];
+export const {{ model | camel }}{{ inputs.property | pascal }}Validation = (v: string[]): InputValidation => ({
+  onConfirmedSubmit: [notEmptyTagsInputValidation(v)],
+});
 
 ```
 

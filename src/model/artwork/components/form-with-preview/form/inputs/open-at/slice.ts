@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkOpenAtOnChange,
-  validateArtworkOpenAtOnSubmit,
-} from "./validation";
+import { artworkOpenAtValidation } from "./validation";
 
 export type ArtworkOpenAtSlice = {
   openAt: Date | null;
@@ -26,12 +22,9 @@ export const createArtworkOpenAtSlice: FormInputSliceCreater<
   openAt: initalValue.openAt,
   setOpenAt: (openAt) => set({ openAt }),
   getOpenAtErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkOpenAtOnChange(value),
-        onConfirmedSubmit: validateArtworkOpenAtOnSubmit(value),
-      },
+      validations: artworkOpenAtValidation(value),
     });
   },
   getOpenAtIsValid: () => {

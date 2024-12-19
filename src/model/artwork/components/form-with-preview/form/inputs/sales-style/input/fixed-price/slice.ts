@@ -1,13 +1,9 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
-
-import {
-  validateArtworkFixedPriceOnChange,
-  validateArtworkFixedPriceOnSubmit,
-} from "./validation";
+import { artworkSalesStyleFixedPriceValidation } from "./validation";
 
 export type ArtworkFixedPriceInputSlice = {
   fixedPrice: number;
@@ -34,12 +30,9 @@ export const createArtworkFixedPriceSlice: FormInputSliceCreater<
 
   setFixedPrice: (fixedPrice) => set({ fixedPrice }),
   getFixedPriceErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkFixedPriceOnChange(value),
-        onConfirmedSubmit: validateArtworkFixedPriceOnSubmit(value),
-      },
+      validations: artworkSalesStyleFixedPriceValidation(value),
     });
   },
   getFixedPriceIsValid: () => {

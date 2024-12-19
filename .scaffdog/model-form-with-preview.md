@@ -109,14 +109,11 @@ export const {{ inputs.model | pascal }}AdminLabelInput: FC = () => {
 ```ts
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
-import {
-  validate{{ inputs.model | pascal }}AdminLabelOnChange,
-  validate{{ inputs.model | pascal }}AdminLabelOnSubmit,
-} from "./validation";
+import { {{ model | camel }}AdminLabelValidation(value) } from "./validation";
 
 export type {{ inputs.model | pascal }}AdminLabelSlice = {
   adminLabel: string;
@@ -135,12 +132,9 @@ export const createAdminLabelSlice: FormInputSliceCreater<
   adminLabel: initalValue.adminLabel,
   setAdminLabel: (adminLabel) => set({ adminLabel }),
   getAdminLabelErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validate{{ inputs.model | pascal }}AdminLabelOnChange(value),
-        onConfirmedSubmit: validate{{ inputs.model | pascal }}AdminLabelOnSubmit(value),
-      },
+      validations: {{ model | camel }}AdminLabelValidation(value),
     });
   },
   getAdminLabelIsValid: () => {
@@ -156,19 +150,18 @@ export const createAdminLabelSlice: FormInputSliceCreater<
 # `form-with-preview/form/inputs/admin-label/validation.ts`
 
 ```ts
+
 import {
   maxLengthValidation,
   notEmptyInputValidation,
 } from "@/common/lib/form-validation/text-input";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validate{{ inputs.model | pascal }}AdminLabelOnSubmit: MultiValidationFn<
-  string
-> = (v) => [notEmptyInputValidation(v)];
 
-export const validate{{ inputs.model | pascal }}AdminLabelOnChange: MultiValidationFn<
-  string
-> = (v) => [maxLengthValidation(100)(v)];
+export const {{ model | camel }}AdminLabelValidation = (v: string): InputValidation => ({
+  onChange: [maxLengthValidation(100)(v)];
+  onConfirmedSubmit: [notEmptyInputValidation(v)],
+});
 
 ```
 

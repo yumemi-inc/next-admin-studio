@@ -1,10 +1,6 @@
 import { notEmptySelectValidation } from "@/common/lib/form-validation/select";
-import type { MultiValidationFn } from "@/common/lib/form-validation/type";
+import type { InputValidation } from "@/model/common/lib/validation";
 
-export const validateArtworkArtistOnSubmit: MultiValidationFn<string | null> = (
-  v,
-) => [notEmptySelectValidation(v)];
-
-export const validateArtworkArtistOnChange: MultiValidationFn<string | null> = (
-  _v,
-) => [];
+export const artworkArtistValidation = (v: string | null): InputValidation => ({
+  onConfirmedSubmit: [notEmptySelectValidation(v)],
+});

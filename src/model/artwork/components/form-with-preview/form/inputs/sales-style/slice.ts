@@ -1,7 +1,7 @@
 import {
   type ValidationPhase,
-  getValidationtErrorMessage,
-} from "@/model/common/lib/get-validation-error-message";
+  getValidationErrorMessage,
+} from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
 import { match } from "ts-pattern";
@@ -18,10 +18,7 @@ import {
   createArtworkFixedPriceSlice,
 } from "./input/fixed-price/slice";
 import type { ArtworkSalesStyle } from "./type";
-import {
-  validateArtworkSalesStyleOnChange,
-  validateArtworkSalesStyleOnSubmit,
-} from "./validation";
+import { artworkSalesStyleValidation } from "./validation";
 
 export type ArtworkSalesStyleInputSlice = {
   // 販売方式
@@ -51,12 +48,9 @@ export const createArtworkSalesStyleSlice: FormInputSliceCreater<
   salesStyle: initalValue.salesStyle,
   setSalesStyle: (salesStyle) => set({ salesStyle }),
   getSalesStyleErrorMessages: (value, phase) => {
-    return getValidationtErrorMessage({
+    return getValidationErrorMessage({
       phase,
-      validations: {
-        onChange: validateArtworkSalesStyleOnChange(value),
-        onConfirmedSubmit: validateArtworkSalesStyleOnSubmit(value),
-      },
+      validations: artworkSalesStyleValidation(value),
     });
   },
   getSalesStyleIsValid: () => {

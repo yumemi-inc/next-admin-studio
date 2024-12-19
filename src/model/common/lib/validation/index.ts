@@ -1,19 +1,20 @@
-import { match } from "ts-pattern";
-
 import type { Validation } from "@/common/lib/form-validation/type";
+import { match } from "ts-pattern";
 
 export type ValidationPhase =
   | "onChange"
   | "onDraftSubmit"
   | "onConfirmedSubmit";
 
-type Props<T> = {
+export type InputValidation = {
+  onChange?: Validation<unknown>[];
+  onDraftSubmit?: Validation<unknown>[];
+  onConfirmedSubmit?: Validation<unknown>[];
+};
+
+type Props = {
   phase: ValidationPhase;
-  validations: {
-    onChange?: Validation<T>[];
-    onDraftSubmit?: Validation<T>[];
-    onConfirmedSubmit?: Validation<T>[];
-  };
+  validations: InputValidation;
 };
 
 export const getErrorMessagesFromValidations = (
@@ -21,7 +22,6 @@ export const getErrorMessagesFromValidations = (
 ): string[] => {
   const messages: string[] = [];
 
-  // MEMO: filter(...).map(...)よりも計算が少ない
   for (const v of validations) {
     if (!v.isOk) {
       messages.push(v.errorMessage);
@@ -31,14 +31,14 @@ export const getErrorMessagesFromValidations = (
   return messages;
 };
 
-export const getValidationtErrorMessage = <T>({
+export const getValidationErrorMessage = ({
   phase,
   validations = {
     onChange: [],
     onDraftSubmit: [],
     onConfirmedSubmit: [],
   },
-}: Props<T>) => {
+}: Props) => {
   const validationsOnPhase = match(phase)
     .with("onChange", () => validations.onChange ?? [])
     .with("onDraftSubmit", () => [
