@@ -190,13 +190,3 @@ export const {{ model | pascal }}{{ inputs.property | pascal }}PreviewView = ({ 
 };
 
 ```
-
-# `form/inputs/{{ inputs.property }}/validation.ts`
-
-```ts
-{{ model := output.path | extractModel }}
-
-export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnChange = (_v: boolean) => [];
-
-export const validate{{ model | pascal }}{{ inputs.property | pascal }}OnSubmit = (_v: boolean) => [];
-```

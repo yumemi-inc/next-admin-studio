@@ -3,4 +3,5 @@ export type ArtistForm = {
   name: string;
   tags: string[];
   authorized: boolean;
+  iconUrl: string;
 };
