@@ -1,5 +1,5 @@
-import { Text } from "@mantine/core";
+import { Center } from "@mantine/core";
 
 export const ArtistTagsPreviewView = ({ value }: { value: string[] }) => {
-  return <Text>{value.join(",")}</Text>;
+  return <Center>tags: {value.join(", ")}</Center>;
 };

@@ -1,3 +1,4 @@
+"use client";
 import { ArtistNamePreviewView } from "../../../preview/name";
 import { useArtistFormStore } from "../../store/hook";
 

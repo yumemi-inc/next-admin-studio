@@ -6,6 +6,10 @@ import { truncateText } from "@/common/lib/truncate-text";
 
 import { artistPathMapping } from "@/model/artist/path";
 
+import { ArtistAuthorizedPreviewView } from "../../preview/authorized";
+import { ArtistIconUrlPreviewView } from "../../preview/icon-url";
+import { ArtistNamePreviewView } from "../../preview/name";
+import { ArtistTagsPreviewView } from "../../preview/tags";
 import { ArtistPreviewTemplate } from "../../preview/template";
 import type { ArtistPreviewList } from "./type";
 
@@ -38,7 +42,14 @@ export const ArtistPreviewListView: FC<Props> = ({ artists }) => {
             >
               {index + 1}. {truncateText(artist.adminLabel, { length: 20 })}
             </Anchor>
-            <ArtistPreviewTemplate />
+            <ArtistPreviewTemplate
+              iconUrl={<ArtistIconUrlPreviewView value={artist.iconUrl} />}
+              name={<ArtistNamePreviewView value={artist.name} />}
+              authorized={
+                <ArtistAuthorizedPreviewView value={artist.authorized} />
+              }
+              tags={<ArtistTagsPreviewView value={artist.tags} />}
+            />
           </Stack>
         </Center>
       ))}

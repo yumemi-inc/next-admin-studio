@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtistAuthorizedPreviewView } from "../../../preview/authorized";
 import { useArtistFormStore } from "../../store/hook";
 

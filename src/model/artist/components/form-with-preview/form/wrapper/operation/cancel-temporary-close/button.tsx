@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { useCancelTemporaryCloseArtist } from "./hook";
 
 export const CancelTemporaryCloseArtistButton: FC = () => {
-  const { loading, disabled, formAction } = useCancelTemporaryCloseArtist();
+  const { loading, disabled, onClick } = useCancelTemporaryCloseArtist();
 
   return (
     <Button
@@ -12,7 +12,7 @@ export const CancelTemporaryCloseArtistButton: FC = () => {
       color="teal"
       loading={loading}
       disabled={disabled}
-      onClick={formAction}
+      onClick={onClick}
       type="submit"
     >
       再公開

@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtistTagsPreviewView } from "../../../preview/tags";
 import { useArtistFormStore } from "../../store/hook";
 

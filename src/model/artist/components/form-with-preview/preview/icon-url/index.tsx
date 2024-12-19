@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtistIconUrlPreviewView } from "../../../preview/icon-url";
 import { useArtistFormStore } from "../../store/hook";
 

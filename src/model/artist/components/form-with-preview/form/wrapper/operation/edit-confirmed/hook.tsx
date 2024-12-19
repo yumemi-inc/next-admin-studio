@@ -15,7 +15,7 @@ export const useEditConfirmedArtistForm = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onConfirmedSubmit");
 
@@ -56,5 +56,5 @@ export const useEditConfirmedArtistForm = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };

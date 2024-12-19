@@ -15,7 +15,7 @@ export const useCreateDraftArtistForm = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onDraftSubmit");
 
@@ -57,5 +57,5 @@ export const useCreateDraftArtistForm = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };

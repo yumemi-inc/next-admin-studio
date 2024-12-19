@@ -1,9 +1,16 @@
-import { Paper, ScrollArea } from "@mantine/core";
-import type { FC } from "react";
+import { Flex, Paper, ScrollArea, Space, Stack } from "@mantine/core";
+import type { FC, ReactNode } from "react";
 
 import { IPHONE_SE_SIZE } from "@/common/const/size";
 
-export const ArtistPreviewTemplate: FC = () => {
+type Props = {
+  iconUrl: ReactNode;
+  name: ReactNode;
+  authorized: ReactNode;
+  tags: ReactNode;
+};
+
+export const ArtistPreviewTemplate: FC<Props> = (props) => {
   return (
     <Paper
       shadow="md"
@@ -12,7 +19,15 @@ export const ArtistPreviewTemplate: FC = () => {
       className="animate-preview-fade-in rounded-md"
     >
       <ScrollArea {...IPHONE_SE_SIZE} type="never">
-        {/* components here */}
+        <Stack align="center">
+          <Space h={40} />
+          {props.iconUrl}
+          <Flex align="center" gap={4}>
+            {props.name}
+            {props.authorized}
+          </Flex>
+          {props.tags}
+        </Stack>
       </ScrollArea>
     </Paper>
   );

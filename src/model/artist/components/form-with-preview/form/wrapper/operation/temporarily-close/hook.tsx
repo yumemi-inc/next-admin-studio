@@ -26,7 +26,7 @@ export const useTemporarilyCloseArtistForm = () => {
   const { loading, disabled, startOperation } =
     useArtistFormOperationState("EDIT_DRAFT");
 
-  const formAction = async () => {
+  const onClick = async () => {
     startOperation();
 
     openConfirmModal({
@@ -63,6 +63,6 @@ export const useTemporarilyCloseArtistForm = () => {
   return {
     loading,
     disabled,
-    formAction,
+    onClick,
   };
 };
