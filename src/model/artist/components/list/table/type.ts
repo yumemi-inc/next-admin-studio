@@ -1,3 +1,6 @@
 import type { Artist } from "../../../type";
 
-export type ArtistTableList = Pick<Artist, "id" | "adminLabel">[];
+export type ArtistTableList = Pick<
+  Artist,
+  "id" | "adminLabel" | "tags" | "creationStatus"
+>[];

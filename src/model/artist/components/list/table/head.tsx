@@ -7,6 +7,7 @@ export const ArtistTableHead = () => (
         No.
       </Table.Th>
       <Table.Th w={400}>管理名称</Table.Th>
+      <Table.Th w={200}>タグ</Table.Th>
     </Table.Tr>
   </Table.Thead>
 );
