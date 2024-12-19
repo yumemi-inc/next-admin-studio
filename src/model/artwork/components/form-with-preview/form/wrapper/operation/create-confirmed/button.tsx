@@ -6,13 +6,13 @@ import type { FC } from "react";
 import { useCreateConfirmedArtworkForm } from "./hook";
 
 export const CreateConfirmedArtworkFormButton: FC = () => {
-  const { loading, disabled, formAction } = useCreateConfirmedArtworkForm();
+  const { loading, disabled, onClick } = useCreateConfirmedArtworkForm();
 
   return (
     <Button
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       確定保存

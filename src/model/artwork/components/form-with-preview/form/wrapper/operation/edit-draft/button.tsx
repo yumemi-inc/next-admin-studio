@@ -6,14 +6,14 @@ import type { FC } from "react";
 import { useEditDraftArtworkForm } from "./hook";
 
 export const EditDraftArtworkFormButton: FC = () => {
-  const { loading, disabled, formAction } = useEditDraftArtworkForm();
+  const { loading, disabled, onClick } = useEditDraftArtworkForm();
 
   return (
     <Button
       variant="outline"
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       更新

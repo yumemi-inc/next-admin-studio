@@ -31,7 +31,7 @@ export const useCancelTemporaryCloseArtwork = () => {
     "CANCEL_TEMPORARY_CLOSE",
   );
 
-  const formAction = async () => {
+  const onClick = async () => {
     startOperation();
 
     openConfirmModal({
@@ -64,5 +64,5 @@ export const useCancelTemporaryCloseArtwork = () => {
     });
   };
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };

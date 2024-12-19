@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtworkSalesStylePreviewView } from "../../../preview/sales-style";
 import { useArtworkFormStore } from "../../store/hook";
 

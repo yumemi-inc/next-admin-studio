@@ -213,6 +213,8 @@ import { {{ model | pascal }}{{ inputs.property | pascal }}Slice } from "../form
 ```tsx
 {{ model := output.path | extractModel }}
 
+"use client";
+
 import { {{ model | pascal }}{{ inputs.property | pascal }}PreviewView } from "../../../preview/{{ inputs.property }}";
 import { use{{ model | pascal }}FormStore } from "../../store/hook";
 

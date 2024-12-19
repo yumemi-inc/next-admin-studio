@@ -6,13 +6,13 @@ import type { FC } from "react";
 import { useEditConfirmedArtworkForm } from "./hook";
 
 export const EditConfirmedArtworkFormButton: FC = () => {
-  const { loading, disabled, formAction } = useEditConfirmedArtworkForm();
+  const { loading, disabled, onClick } = useEditConfirmedArtworkForm();
 
   return (
     <Button
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       更新

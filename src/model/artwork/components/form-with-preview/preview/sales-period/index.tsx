@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtworkSalesPeriodPreviewView } from "../../../preview/sales-period";
 import { useArtworkFormStore } from "../../store/hook";
 

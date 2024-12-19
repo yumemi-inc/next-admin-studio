@@ -175,7 +175,7 @@ import type { FC } from "react";
 import { useCancelTemporaryClose{{ inputs.model | pascal }} } from "./hook";
 
 export const CancelTemporaryClose{{ inputs.model | pascal }}Button: FC = () => {
-  const { loading, disabled, formAction } =
+  const { loading, disabled, onClick } =
     useCancelTemporaryClose{{ inputs.model | pascal }}();
 
   return (
@@ -184,7 +184,7 @@ export const CancelTemporaryClose{{ inputs.model | pascal }}Button: FC = () => {
       color="teal"
       loading={loading}
       disabled={disabled}
-      onClick={formAction}
+      onClick={onClick}
       type="submit"
     >
       再公開
@@ -229,7 +229,7 @@ export const useCancelTemporaryClose{{ inputs.model | pascal }} = () => {
   const { loading, disabled, startOperation } =
     use{{ inputs.model | pascal }}FormOperationState("CANCEL_TEMPORARY_CLOSE");
 
-  const formAction = async () => {
+  const onClick = async () => {
     startOperation();
 
     openConfirmModal({
@@ -262,7 +262,7 @@ export const useCancelTemporaryClose{{ inputs.model | pascal }} = () => {
     });
   };
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -278,13 +278,13 @@ import type { FC } from "react";
 import { useConfirmDraft{{ inputs.model | pascal }}Form } from "./hook";
 
 export const ConfirmDraft{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } = useConfirmDraft{{ inputs.model | pascal }}Form();
+  const { loading, disabled, onClick } = useConfirmDraft{{ inputs.model | pascal }}Form();
 
   return (
     <Button
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       確定保存
@@ -316,7 +316,7 @@ export const useConfirmDraft{{ inputs.model | pascal }}Form = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onConfirmedSubmit");
 
@@ -357,7 +357,7 @@ export const useConfirmDraft{{ inputs.model | pascal }}Form = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -373,13 +373,13 @@ import type { FC } from "react";
 import { useCreateConfirmed{{ inputs.model | pascal }}Form } from "./hook";
 
 export const CreateConfirmed{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } = useCreateConfirmed{{ inputs.model | pascal }}Form();
+  const { loading, disabled, onClick } = useCreateConfirmed{{ inputs.model | pascal }}Form();
 
   return (
     <Button
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       確定保存
@@ -411,7 +411,7 @@ export const useCreateConfirmed{{ inputs.model | pascal }}Form = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onConfirmedSubmit");
 
@@ -452,7 +452,7 @@ export const useCreateConfirmed{{ inputs.model | pascal }}Form = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -468,14 +468,14 @@ import type { FC } from "react";
 import { useCreateDraft{{ inputs.model | pascal }}Form } from "./hook";
 
 export const CreateDraft{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } = useCreateDraft{{ inputs.model | pascal }}Form();
+  const { loading, disabled, onClick } = useCreateDraft{{ inputs.model | pascal }}Form();
 
   return (
     <Button
       variant="outline"
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       下書き保存
@@ -507,7 +507,7 @@ export const useCreateDraft{{ inputs.model | pascal }}Form = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onDraftSubmit");
 
@@ -549,7 +549,7 @@ export const useCreateDraft{{ inputs.model | pascal }}Form = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -574,13 +574,13 @@ import type { FC } from "react";
 import { useEditConfirmed{{ inputs.model | pascal }}Form } from "./hook";
 
 export const EditConfirmed{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } = useEditConfirmed{{ inputs.model | pascal }}Form();
+  const { loading, disabled, onClick } = useEditConfirmed{{ inputs.model | pascal }}Form();
 
   return (
     <Button
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       更新
@@ -612,7 +612,7 @@ export const useEditConfirmed{{ inputs.model | pascal }}Form = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onConfirmedSubmit");
 
@@ -653,7 +653,7 @@ export const useEditConfirmed{{ inputs.model | pascal }}Form = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -669,14 +669,14 @@ import type { FC } from "react";
 import { useEditDraft{{ inputs.model | pascal }}Form } from "./hook";
 
 export const EditDraft{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } = useEditDraft{{ inputs.model | pascal }}Form();
+  const { loading, disabled, onClick } = useEditDraft{{ inputs.model | pascal }}Form();
 
   return (
     <Button
       variant="outline"
       loading={loading}
       disabled={disabled}
-      formAction={formAction}
+      onClick={onClick}
       type="submit"
     >
       更新
@@ -708,7 +708,7 @@ export const useEditDraft{{ inputs.model | pascal }}Form = () => {
     (state) => state.setValidationPhase,
   );
 
-  const formAction = useCallback(async () => {
+  const onClick = useCallback(async () => {
     // バリデーションフェーズの更新
     setValidationPhase("onDraftSubmit");
 
@@ -750,7 +750,7 @@ export const useEditDraft{{ inputs.model | pascal }}Form = () => {
     setValidationPhase("onChange");
   }, [startOperation, getFormIsValid, setValidationPhase]);
 
-  return { loading, disabled, formAction };
+  return { loading, disabled, onClick };
 };
 
 ```
@@ -767,7 +767,7 @@ import type { FC } from "react";
 import { useTemporarilyClose{{ inputs.model | pascal }}Form } from "./hook";
 
 export const TemporarilyClose{{ inputs.model | pascal }}FormButton: FC = () => {
-  const { loading, disabled, formAction } =
+  const { loading, disabled, onClick } =
     useTemporarilyClose{{ inputs.model | pascal }}Form();
 
   return (
@@ -776,7 +776,7 @@ export const TemporarilyClose{{ inputs.model | pascal }}FormButton: FC = () => {
       color="red"
       loading={loading}
       disabled={disabled}
-      onClick={formAction}
+      onClick={onClick}
       type="submit"
     >
       公開停止
@@ -817,7 +817,7 @@ export const useTemporarilyClose{{ inputs.model | pascal }}Form = () => {
   const { loading, disabled, startOperation } =
     use{{ inputs.model | pascal }}FormOperationState("EDIT_DRAFT");
 
-  const formAction = async () => {
+  const onClick = async () => {
     startOperation();
 
     openConfirmModal({
@@ -854,7 +854,7 @@ export const useTemporarilyClose{{ inputs.model | pascal }}Form = () => {
   return {
     loading,
     disabled,
-    formAction,
+    onClick,
   };
 };
 

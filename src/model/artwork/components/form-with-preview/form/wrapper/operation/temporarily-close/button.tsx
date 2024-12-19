@@ -6,7 +6,7 @@ import type { FC } from "react";
 import { useTemporarilyCloseArtworkForm } from "./hook";
 
 export const TemporarilyCloseArtworkFormButton: FC = () => {
-  const { loading, disabled, formAction } = useTemporarilyCloseArtworkForm();
+  const { loading, disabled, onClick } = useTemporarilyCloseArtworkForm();
 
   return (
     <Button
@@ -14,7 +14,7 @@ export const TemporarilyCloseArtworkFormButton: FC = () => {
       color="red"
       loading={loading}
       disabled={disabled}
-      onClick={formAction}
+      onClick={onClick}
       type="submit"
     >
       公開停止

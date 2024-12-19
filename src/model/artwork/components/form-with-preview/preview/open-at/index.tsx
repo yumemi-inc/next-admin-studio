@@ -1,3 +1,5 @@
+"use client";
+
 import { ArtworkOpenAtPreviewView } from "../../../preview/open-at";
 import { useArtworkFormStore } from "../../store/hook";
 
