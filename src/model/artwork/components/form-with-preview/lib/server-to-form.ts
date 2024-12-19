@@ -14,5 +14,6 @@ export const artworkServerToForm = (
     ...serverState,
     image: fileUploadConverter.toClient(serverState.image),
     ...artistSalesStyleConverter.toClient(serverState.salesStyle),
+    artist: serverState.artist?.id ?? null,
   };
 };

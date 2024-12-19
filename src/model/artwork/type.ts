@@ -1,11 +1,12 @@
 import type { NullableDateRange } from "@/common/components/form/date-time-range-input/type";
+import type { Artist } from "../artist/type";
 
 export type Artwork = {
   id: string;
   adminLabel: string;
   title: string;
   description: string;
-  artist: string | null;
+  artist: Artist | null;
   image: string;
   openAt: Date | null;
   salesPeriod: NullableDateRange;

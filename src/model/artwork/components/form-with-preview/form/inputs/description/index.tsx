@@ -14,6 +14,7 @@ export const ArtworkDescriptionInput: FC = () => {
       label="説明"
       description="説明を入力してください"
       placeholder="説明を入力"
+      minRows={2}
       required
       value={value}
       setValue={setValue}

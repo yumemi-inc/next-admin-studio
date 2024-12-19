@@ -22,7 +22,7 @@ export const ArtworkTableListLoading = () => (
             <Skeleton height={15} width={400} radius="md" />
           </Table.Td>
           <Table.Td py="sm">
-            <Skeleton height={15} width={112} radius="md" />
+            <Skeleton height={15} width={200} radius="md" />
           </Table.Td>
         </Table.Tr>
       ))}

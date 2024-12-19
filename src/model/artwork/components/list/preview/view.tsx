@@ -6,7 +6,14 @@ import { truncateText } from "@/common/lib/truncate-text";
 
 import { artworkPathMapping } from "@/model/artwork/path";
 
+import { ArtworkArtistPreviewView } from "../../preview/artist";
+import { ArtworkConditionPreviewView } from "../../preview/condition";
+import { ArtworkDescriptionPreviewView } from "../../preview/description";
+import { ArtworkImagePreviewView } from "../../preview/image";
+import { ArtworkSalesPeriodPreviewView } from "../../preview/sales-period";
+import { ArtworkSalesStylePreviewView } from "../../preview/sales-style";
 import { ArtworkPreviewTemplate } from "../../preview/template";
+import { ArtworkTitlePreviewView } from "../../preview/title";
 import type { ArtworkPreviewList } from "./type";
 
 type Props = {
@@ -38,7 +45,30 @@ export const ArtworkPreviewListView: FC<Props> = ({ artworks }) => {
             >
               {index + 1}. {truncateText(artwork.adminLabel, { length: 20 })}
             </Anchor>
-            <ArtworkPreviewTemplate />
+            <ArtworkPreviewTemplate
+              title={<ArtworkTitlePreviewView value={artwork.title} />}
+              artist={<ArtworkArtistPreviewView value={artwork.artist} />}
+              description={
+                <ArtworkDescriptionPreviewView value={artwork.description} />
+              }
+              image={<ArtworkImagePreviewView value={artwork.image} />}
+              salesPeriod={
+                <ArtworkSalesPeriodPreviewView value={artwork.salesPeriod} />
+              }
+              condition={
+                <ArtworkConditionPreviewView value={artwork.condition} />
+              }
+              salesStyle={
+                <ArtworkSalesStylePreviewView
+                  salesStyle={artwork.salesStyle.type}
+                  price={
+                    artwork.salesStyle.type === "AUCTION"
+                      ? artwork.salesStyle.startingPrice
+                      : artwork.salesStyle.fixedPrice
+                  }
+                />
+              }
+            />
           </Stack>
         </Center>
       ))}
