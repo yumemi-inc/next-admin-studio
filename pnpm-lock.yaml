@@ -48,8 +48,8 @@ importers:
         specifier: 19.0.0-rc.1
         version: 19.0.0-rc.1(react@19.0.0-rc.1)
       remeda:
-        specifier: ^2.17.3
-        version: 2.17.3
+        specifier: ^2.18.0
+        version: 2.18.0
       ts-pattern:
         specifier: ^5.5.0
         version: 5.5.0
@@ -1393,8 +1393,8 @@ packages:
   remark-parse@10.0.2:
     resolution: {integrity: sha512-3ydxgHa/ZQzG8LvC7jTXccARYDcRld3VfcgIIFs7bI6vbRSxJJmzgLEIIoYKyrfhaY+ujuWaf/PJiMZXoiCXgw==}
 
-  remeda@2.17.3:
-    resolution: {integrity: sha512-xyi2rCQkz2j4BEWbWxPw6JCapv1yBuSwr4Uf9BX00AkesAJaiKvc6Il6thsBidwVZAtNiSaCIXvslkKL0ybz8w==}
+  remeda@2.18.0:
+    resolution: {integrity: sha512-wvHvaApA7crz46HWhGTotPawkzd45w1iXzPK7r4ECQgbmcSqHLrVio2LOr7ZEp1pu5QDH1U391ZKu+qra7OoLw==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -1567,10 +1567,6 @@ packages:
 
   type-fest@4.26.1:
     resolution: {integrity: sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==}
-    engines: {node: '>=16'}
-
-  type-fest@4.28.0:
-    resolution: {integrity: sha512-jXMwges/FVbFRe5lTMJZVEZCrO9kI9c8k0PA/z7nF3bo0JSCCLysvokFjNPIUK/itEMas10MQM+AiHoHt/T/XA==}
     engines: {node: '>=16'}
 
   type-fest@4.30.2:
@@ -2991,9 +2987,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remeda@2.17.3:
+  remeda@2.18.0:
     dependencies:
-      type-fest: 4.28.0
+      type-fest: 4.30.2
 
   require-directory@2.1.1: {}
 
@@ -3183,8 +3179,6 @@ snapshots:
   type-fest@0.21.3: {}
 
   type-fest@4.26.1: {}
-
-  type-fest@4.28.0: {}
 
   type-fest@4.30.2: {}
 
