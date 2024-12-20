@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Admin Studio
 
-## Getting Started
+[scaffdog](https://scaff.dog/) を用いて高速に管理画面を開発するためのテンプレートプロジェクトです。
 
-First, run the development server:
+![アーティスト管理の詳細画面のスクリーンショット](docs/screenshots/artist-detail.png)
+
+Next.js, Mantine UI, Zustand を主に利用しています。
+
+## テンプレートを利用して生成できるもの
+
+1. 一覧画面
+
+コンテンツの一覧画面です。
+URLSearchParams と連動した検索フォーム、ページネーションがついています。
+
+![アーティスト管理の一覧画面のスクリーンショット](docs/screenshots/artist-list.png)
+
+1. 詳細画面
+
+コンテンツの詳細（編集）画面です。
+編集のためのフォーム、フォームと連動したプレビューがついています。プロパティに合わせてインプットをカスタマイズして生成できます。
+
+![アーティスト管理の詳細画面のスクリーンショット](docs/screenshots/artist-detail.png)
+
+3. 新規作成画面
+
+コンテンツの新規作成画面です。内容は詳細画面とほぼ同じですが、詳細画面とは別に `/[model]/new` のパスでページを用意しています。
+
+![アーティスト管理の新規作成画面のスクリーンショット](docs/screenshots/artist-new.png)
+
+
+## 管理画面の開発手順
+
+scaffdog を利用して管理画面を開発する際の手順について説明します。
+
+この手順はあくまでデフォルトの設定で標準的なコンテンツの管理画面を生成する場合の手順です。プロジェクトの要件に合わせてテンプレートをカスタマイズしたり、手動でコードを追加したりしてください。
+
+Artist というコンテンツを管理する場合を例に説明します。
+
+### 1. 立ち上げ
+
+まず、`scaffold` コマンドを用いて Artist の一覧・新規作成・詳細画面の大部分を作成します。`scaffold` コマンドは複数の scaffdog テンプレートを一括で実行するシェルスクリプトを実行します。
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# $1: モデル名
+# $2: パス名
+# $3: 呼称
+pnpm scaffold artist artists アーティスト
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 詳細フォームインプットの追加
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Artist　のプロパティに合わせて form-input テンプレートを利用することで、詳細画面が大方完成します(※)。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+例えば、Artist に下記のプロパティの入力が必要な場合、
 
-## Learn More
+```typescript
+export type Artist = {
+  name: string;
+  iconUrl: string;
+  tags: string[];
+  authorized: boolean;
+};
+```
 
-To learn more about Next.js, take a look at the following resources:
+下記のコマンドを実行することで、詳細画面のフォームに各種インプットが追加されます。コマンドは `nr gen` で対話式に実行することもできます。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# name
+pnpm exec scaffdog generate form-input-text -f --answer "property:name" --answer "required:true" --output "/model/artist/components/form-with-preview"
 
-## Deploy on Vercel
+# iconUrl
+pnpm exec scaffdog generate form-input-text -f --answer "property:iconUrl" --answer "required:true" --output "/model/artist/components/form-with-preview"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# tags
+pnpm exec scaffdog generate form-input-tags -f --answer "property:tags" --answer "required:true" --output "/model/artist/components/form-with-preview"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# authorized
+pnpm exec scaffdog generate form-input-switch -f --answer "property:authorized" --answer "required:true" --output "/model/artist/components/form-with-preview"
+```
+
+あとは各種インプットのラベルやディスクリプション、バリデーションなどを編集してください。
+
+(※) デフォルトでは [Injection](https://scaff.dog/docs/templates/injection) 箇所に一部手作業が発生します。
+
+### 3. 一覧の検索フォームインプットの追加
+
+一覧の検索フォームについても、search-inputテンプレートを用いて追加することができます。
+
+```bash
+# タグ検索を追加
+pnpm exec scaffdog generate search-input-checkbox -f --answer "property:tags" --output "/model/artists/components/list/search"
+```
+
+詳細フォームと同様にラベルやディスクリプションを編集してください。
+
+その他デフォルトで利用できるテンプレートについては [`.scaffdog/`](.scaffdog/) を参照してください。
+
+## ディレクトリ構成
+
+`src/` 配下に `app/`, `common/`, `model/` を配置しており、例えば Artist の管理画面を開発する場合には各種モジュールが `model/artist/` に配置されます。詳細は [`model/artist/`](src/model/artist) を御覧ください。
+
