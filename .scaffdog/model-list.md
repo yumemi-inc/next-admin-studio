@@ -517,7 +517,7 @@ export const {{ inputs.model | pascal }}SearchStoreContext = createContext<
 export const {{ inputs.model | pascal }}SearchStoreProvider: FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const storeRef = useRef<ReturnType<typeof create{{ inputs.model | pascal }}SearchStore>>();
+  const storeRef = useRef<ReturnType<typeof create{{ inputs.model | pascal }}SearchStore>>(null);
   const initialState = use{{ inputs.model | pascal }}SearchStoreInitialValue();
 
   if (!storeRef.current) {

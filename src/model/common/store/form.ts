@@ -1,7 +1,7 @@
 import type { OperationSlice } from "../feature/operation/slice";
 
 import type { StateCreator } from "zustand";
-import type { ValidationPhase } from "../lib/get-validation-error-message";
+import type { ValidationPhase } from "../lib/validation";
 
 export type ValidationSlice = {
   validationPhase: ValidationPhase;
