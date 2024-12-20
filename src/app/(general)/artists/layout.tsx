@@ -6,9 +6,7 @@ export default function ArtistListLayout({
 }: Readonly<PropsWithChildren>) {
   return (
     <Suspense>
-      <ArtistSearchStoreProvider>
-        {children}
-      </ArtistSearchStoreProvider>
+      <ArtistSearchStoreProvider>{children}</ArtistSearchStoreProvider>
     </Suspense>
   );
 }

@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check --write",
-    "gen": "scaffdog generate && nr lint ./src/model/",
+    "gen": "scaffdog generate && pnpm lint ./src/model/",
     "scaffold": "bash .scaffdog/init-content.sh"
   },
   "dependencies": {

@@ -1,11 +1,11 @@
 import type { SearchParams } from "nuqs";
 
-import { copyAndNewParamsCache } from "@/model/common/feature/operation/copy-and-new/params";
 import { ArtistFormWithPreview } from "@/model/artist/components/form-with-preview";
 import { artistServerToForm } from "@/model/artist/components/form-with-preview/lib/server-to-form";
 import { getArtist } from "@/model/artist/components/form-with-preview/query";
 import { ARTIST_FORM_STORE_INITIAL_STATE } from "@/model/artist/components/form-with-preview/store/const";
 import { ArtistFormStoreProvider } from "@/model/artist/components/form-with-preview/store/provider";
+import { copyAndNewParamsCache } from "@/model/common/feature/operation/copy-and-new/params";
 
 type Props = {
   searchParams: Promise<SearchParams>;

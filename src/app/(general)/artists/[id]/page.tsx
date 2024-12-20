@@ -5,5 +5,5 @@ export default function ArtistDetailPage() {
     <main>
       <ArtistFormWithPreview />
     </main>
-  )
+  );
 }
