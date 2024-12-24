@@ -2,11 +2,11 @@
 
 ## 一覧画面
 
-![アーティスト管理の一覧画面のスクリーンショット](docs/screenshots/artist-list.png)
+![アーティスト管理の一覧画面のスクリーンショット](../../../docs/screenshots/artist-list.png)
 
 ## 詳細画面
 
-![アーティスト管理の詳細画面のスクリーンショット](docs/screenshots/artist-detail.png)
+![アーティスト管理の詳細画面のスクリーンショット](../../../docs/screenshots/artist-detail.png)
 
 ## 管理項目
 

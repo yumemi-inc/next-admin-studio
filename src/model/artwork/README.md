@@ -2,11 +2,11 @@
 
 ## 一覧画面
 
-![作品管理の一覧画面のスクリーンショット](docs/screenshots/artwork-list.png)
+![作品管理の一覧画面のスクリーンショット](../../../docs/screenshots/artwork-list.png)
 
 ## 詳細画面
 
-![作品管理の詳細画面のスクリーンショット](docs/screenshots/artwork-detail.png)
+![作品管理の詳細画面のスクリーンショット](../../../docs/screenshots/artwork-detail.png)
 
 ## 管理項目
 
