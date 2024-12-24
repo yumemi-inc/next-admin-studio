@@ -50,7 +50,9 @@ pnpm scaffold artist artists アーティスト
 
 ### 2. 詳細フォームインプットの追加
 
-Artist　のプロパティに合わせて form-input テンプレートを利用することで、詳細画面が大方完成します(※)。
+1.で生成した空のモデルにプロパティを追加しましょう(※1)。
+
+Artist　のプロパティに合わせて form-input テンプレートを利用することで、詳細画面が大方完成します(※2)。
 
 例えば、Artist に下記のプロパティの入力が必要な場合、
 
@@ -82,7 +84,9 @@ pnpm exec scaffdog generate form-input-switch -f --answer "property:authorized" 
 
 あとは各種インプットのラベルやディスクリプション、バリデーションなどを編集してください。
 
-(※) デフォルトでは [Injection](https://scaff.dog/docs/templates/injection) 箇所に一部手作業が発生します。
+(※1) 「管理名称」プロパティはモデルを生成した時点で自動的に追加されます。プロジェクトに必要ない場合は適宜削除してください。
+
+(※2) デフォルトでは [Injection](https://scaff.dog/docs/templates/injection) 箇所に一部手作業が発生します。
 
 ### 3. 一覧の検索フォームインプットの追加
 
