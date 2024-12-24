@@ -1309,7 +1309,7 @@ export const {{ inputs.model | pascal }}FormStoreProvider: FC<{
   children: ReactNode;
   initialState: {{ inputs.model | pascal }}Form;
 }> = ({ children, initialState }) => {
-  const storeRef = useRef<{{ inputs.model | pascal }}FormStoreApi>(null);
+  const storeRef = useRef<{{ inputs.model | pascal }}FormStoreApi | null>(null);
   if (!storeRef.current) {
     storeRef.current = create{{ inputs.model | pascal }}FormStore(initialState);
   }

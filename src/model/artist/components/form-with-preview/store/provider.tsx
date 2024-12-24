@@ -15,7 +15,7 @@ export const ArtistFormStoreProvider: FC<{
   children: ReactNode;
   initialState: ArtistForm;
 }> = ({ children, initialState }) => {
-  const storeRef = useRef<ArtistFormStoreApi>(null);
+  const storeRef = useRef<ArtistFormStoreApi | null>(null);
   if (!storeRef.current) {
     storeRef.current = createArtistFormStore(initialState);
   }
