@@ -90,7 +90,7 @@ export const createArtistAdminTitleSlice: FormInputSliceCreater<
   },
 });
 ```
-入力ごとに作成したsliceを集約して、フォーム全体のstoreを作成する
+入力ごとに作成したsliceを集約して、フォーム全体のstoreを作成します。
 ```tsx
 // form-with-preview/store/index.ts
 
@@ -126,7 +126,7 @@ export const useArtistAdminTitleInput = () => {
 ```
 
 ## コンポーネント設計
-hookから値やsetterを取得して、コンポーネントに注入する。
+hookから値やsetterを取得して、コンポーネントに注入します。
 
 ```tsx
 // form-with-preview/form/inputs/admin-title/index.tsx
