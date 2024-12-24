@@ -1,7 +1,9 @@
 # これはなに
+
 zustandを用いたformの状態管理について説明します。
 
 # 基本的な考え
+
 リアルタイムプレビューを実装するため、controlledなフォームを作成する必要があります（= Server Actionsでuncontrolledなフォームを取り扱うだけでは不足）。
 
 [Zustand](https://zustand-demo.pmnd.rs/)を用いてフォームの様々な値を、1つのstoreでまとめて管理するトップダウンの状態管理の手法をとっています。管理している値は、各入力の値やバリデーションのエラーメッセージなどです。
@@ -9,6 +11,7 @@ zustandを用いたformの状態管理について説明します。
 トップダウンの状態管理では、ストアの定義が煩雑になりがちです。それを[zustandのsliceパターン](https://zustand.docs.pmnd.rs/guides/slices-pattern)でカバーしています。
 
 ## Contextでstoreを管理
+
 [zustandのドキュメント](https://zustand.docs.pmnd.rs/guides/nextjs#creating-a-store-per-request)でも推奨されているように、Contextでストアを管理する設計で実装しています。このように実装することでグローバルなストアではなく、ページ単位のストアを実装することが可能になっています。
 
 実装例
@@ -90,7 +93,9 @@ export const createArtistAdminTitleSlice: FormInputSliceCreater<
   },
 });
 ```
+
 入力ごとに作成したsliceを集約して、フォーム全体のstoreを作成します。
+
 ```tsx
 // form-with-preview/store/index.ts
 
@@ -104,7 +109,9 @@ export const createArtistFormStore = (initialState: ArtistForm) =>
 ```
 
 ## hook設計
+
 storeから値やsetterなどを取得してコンポーネントに渡す役割。
+
 ```tsx
 // form-with-preview/form/inputs/admin-title/hook.ts
 
@@ -126,6 +133,7 @@ export const useArtistAdminTitleInput = () => {
 ```
 
 ## コンポーネント設計
+
 hookから値やsetterを取得して、コンポーネントに注入します。
 
 ```tsx
