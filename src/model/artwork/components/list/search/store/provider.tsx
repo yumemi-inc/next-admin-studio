@@ -12,9 +12,7 @@ export const ArtworkSearchStoreContext = createContext<
 export const ArtworkSearchStoreProvider: FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const storeRef = useRef<ReturnType<typeof createArtworkSearchStore> | null>(
-    null,
-  );
+  const storeRef = useRef<ReturnType<typeof createArtworkSearchStore>>(null);
   const initialState = useArtworkSearchStoreInitialValue();
 
   if (!storeRef.current) {
