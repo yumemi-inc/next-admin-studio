@@ -113,7 +113,7 @@ import {
 } from "@/model/common/lib/validation";
 import type { FormInputSliceCreater } from "@/model/common/store/form";
 
-import { {{ model | camel }}AdminLabelValidation(value) } from "./validation";
+import { {{ inputs.model | camel }}AdminLabelValidation } from "./validation";
 
 export type {{ inputs.model | pascal }}AdminLabelSlice = {
   adminLabel: string;
@@ -134,7 +134,7 @@ export const createAdminLabelSlice: FormInputSliceCreater<
   getAdminLabelErrorMessages: (value, phase) => {
     return getValidationErrorMessage({
       phase,
-      validations: {{ model | camel }}AdminLabelValidation(value),
+      validations: {{ inputs.model | camel }}AdminLabelValidation(value),
     });
   },
   getAdminLabelIsValid: () => {
@@ -158,8 +158,8 @@ import {
 import type { InputValidation } from "@/model/common/lib/validation";
 
 
-export const {{ model | camel }}AdminLabelValidation = (v: string): InputValidation => ({
-  onChange: [maxLengthValidation(100)(v)];
+export const {{ inputs.model | camel }}AdminLabelValidation = (v: string): InputValidation => ({
+  onChange: [maxLengthValidation(100)(v)],
   onConfirmedSubmit: [notEmptyInputValidation(v)],
 });
 

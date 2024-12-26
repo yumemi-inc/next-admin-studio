@@ -121,9 +121,3 @@ const NavLink: FC<NavLinkProps & { href: string; hasBorder?: boolean }> = ({
     />
   );
 };
-
-// TODO: NAV_GROUPに下記のページリンクを追加
-// {
-//   label: MODELS.Artwork.label,
-//   path: artworkPathMapping.indexPath,
-// },
