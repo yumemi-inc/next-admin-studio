@@ -132,7 +132,7 @@ import {
 import type { InputValidation } from "@/model/common/lib/validation";
 
 export const {{ model | camel }}{{ inputs.property | pascal }}Validation = (v: string): InputValidation => ({
-  onChange: [maxLengthValidation(100)(v)];
+  onChange: [maxLengthValidation(100)(v)],
   onConfirmedSubmit: [notEmptyInputValidation(v)],
 });
 
